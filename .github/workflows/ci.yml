@@ -27,7 +27,6 @@ jobs:
     services:
       mysql:
         image: mysql
-        alias: mysql
         env:
           MYSQL_ROOT_PASSWORD: root
         ports:
