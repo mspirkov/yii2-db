@@ -1,0 +1,22 @@
+name: yii2-db-tests
+services:
+  app:
+    container_name: yii2-db-tests-app
+    build: .
+    volumes:
+      - ./../:/app
+    command: tail -f /dev/null
+    working_dir: /app
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "mysql", "-uroot", "-proot", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5

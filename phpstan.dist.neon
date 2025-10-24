@@ -1,0 +1,28 @@
+parameters:
+    level: max
+
+    paths:
+        - src
+        - tests
+
+    bootstrapFiles:
+        - phpstan/bootstrap.php
+
+    dynamicConstantNames:
+        - YII_DEBUG
+        - YII_ENV
+        - YII_ENV_DEV
+        - YII_ENV_PROD
+        - YII_ENV_TEST
+
+    # Will be fixed in version 2.0.54
+    ignoreErrors:
+        -
+            message: '#^Parameter \#1 \$message of static method yii\\BaseYii\:\:error\(\) expects array\|string\, Throwable given\.$#'
+            count: 1
+            path: src/TransactionManager.php
+
+        -
+            message: '#^Parameter \#1 \$message of static method yii\\BaseYii\:\:warning\(\) expects array\|string\, Throwable given\.$#'
+            count: 1
+            path: tests/TransactionManagerTest.php
