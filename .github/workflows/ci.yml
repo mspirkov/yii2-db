@@ -23,7 +23,7 @@ jobs:
       - name: Run PhpCsFixer
         run: vendor/bin/php-cs-fixer check
 
-  codestyle:
+  rector:
     name: "Rector check"
     runs-on: ubuntu-latest
     steps:
