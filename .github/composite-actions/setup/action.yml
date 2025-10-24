@@ -13,7 +13,7 @@ runs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ inputs.php-version }}
-        extensions: mbstring
+        extensions: mbstring pdo pdo_mysql
 
     - name: Install dependencies
       shell: "sh"
