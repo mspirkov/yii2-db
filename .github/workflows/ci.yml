@@ -24,6 +24,18 @@ jobs:
         run: vendor/bin/php-cs-fixer check
 
   tests:
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        options: >-
+          --name=mysql
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-retries=3
+          --health-timeout=5s
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
