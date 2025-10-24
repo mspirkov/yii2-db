@@ -23,6 +23,21 @@ jobs:
       - name: Run PhpCsFixer
         run: vendor/bin/php-cs-fixer check
 
+  codestyle:
+    name: "Rector check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./.github/composite-actions/setup
+        with:
+          php-version: "7.4"
+
+      - name: Run Rector
+        run: vendor/bin/rector process --dry-run
+
   tests:
     services:
       mysql:
