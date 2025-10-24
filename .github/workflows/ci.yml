@@ -1,0 +1,83 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  codestyle:
+    name: "Codestyle check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./.github/composite-actions/setup
+        with:
+          php-version: "7.4"
+
+      - name: Run PhpCsFixer
+        run: vendor/bin/php-cs-fixer check
+
+  rector:
+    name: "Rector check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./.github/composite-actions/setup
+        with:
+          php-version: "7.4"
+
+      - name: Run Rector
+        run: vendor/bin/rector process --dry-run
+
+  tests:
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --name=mysql
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-retries=3
+          --health-timeout=5s
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php-version: "7.4"
+          - php-version: "8.0"
+          - php-version: "8.1"
+          - php-version: "8.2"
+          - php-version: "8.3"
+          - php-version: "8.4"
+
+    name: PHP ${{ matrix.php-version }} checks
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/composite-actions/setup
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Run tests
+        run: vendor/bin/phpunit -c phpunit.dist.xml
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan
