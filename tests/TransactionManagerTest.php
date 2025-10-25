@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace MSpirkov\Yii2\Extensions\Db\Tests;
+namespace MSpirkov\Yii2\Db\Tests;
 
 use Exception;
 use Throwable;
 use Yii;
-use MSpirkov\Yii2\Extensions\Db\TransactionManager;
+use MSpirkov\Yii2\Db\TransactionManager;
 use yii\log\Logger;
 
 class TransactionManagerTest extends AbstractTestCase

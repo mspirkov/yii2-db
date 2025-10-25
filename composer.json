@@ -43,12 +43,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "MSpirkov\\Yii2\\Extensions\\Db\\": "src/"
+            "MSpirkov\\Yii2\\Db\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MSpirkov\\Yii2\\Extensions\\Db\\Tests\\": "tests/"
+            "MSpirkov\\Yii2\\Db\\Tests\\": "tests/"
         }
     },
     "config": {

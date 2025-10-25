@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MSpirkov\Yii2\Extensions\Db\Tests\ActiveRecord;
+namespace MSpirkov\Yii2\Db\Tests\ActiveRecord;
 
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
