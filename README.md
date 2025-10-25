@@ -1,6 +1,6 @@
 <h1 align="center">Yii2 DB</h1>
 
-A package of helper classes for working with databases in Yii2. Simplifies working with transactions and Active Record.
+A package of helper classes for working with databases in Yii2.
 
 [![PHP](https://img.shields.io/badge/%3E%3D7.4-7A86B8.svg?style=for-the-badge&logo=php&logoColor=white&label=PHP)](https://www.php.net/releases/7.4/en.php)
 [![Yii 2.0.x](https://img.shields.io/badge/%3E%3D2.0.53-247BA0.svg?style=for-the-badge&logo=yii&logoColor=white&label=Yii)](https://github.com/yiisoft/yii2/tree/2.0.53)
@@ -55,7 +55,7 @@ class CustomerService
         private readonly CustomerRepository $customerRepository,
     ) {}
 
-    public function getCustomerData(int $id): ?Customer
+    public function getCustomer(int $id): ?Customer
     {
         return $this->customerRepository->findOne($id);
     }
