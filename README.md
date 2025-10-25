@@ -33,7 +33,7 @@ An abstract class for creating repositories that interact with ActiveRecord mode
 
 This way, you can separate the logic of executing queries from the ActiveRecord models themselves. This will make your ActiveRecord models thinner and simpler. It will also make testing easier, as you can mock the methods for working with the database.
 
-Basic usage example:
+Usage example:
 
 ```php
 /**
@@ -75,7 +75,7 @@ It provides two main methods:
 -   `safeWrap` for executing a callable within a transaction, logging exceptions, and returning a
     boolean indicating success.
 
-Basic usage example:
+Usage example:
 
 ```php
 class DbTransactionManager extends TransactionManager
