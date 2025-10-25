@@ -9,7 +9,6 @@ A package of helper classes for working with databases in Yii2.
 ![Coverage](https://img.shields.io/badge/100%25-44CC11.svg?style=for-the-badge&label=Coverage)
 ![PHPStan Level Max](https://img.shields.io/badge/Max-7A86B8.svg?style=for-the-badge&label=PHPStan%20Level)
 
-
 ## Installation
 
 Run
@@ -104,10 +103,10 @@ class ProductService
      */
     public function deleteProduct(int $id): array
     {
-        // Some logic here
+        $product = $this->productRepository->findOne($id);
 
         $transactionResult = $this->dbTransactionManager->safeWrap(function () use ($product) {
-            $this->productRepository->delete($product)
+            $this->productRepository->delete($product);
             $this->productFilesystem->delete($product->preview_filename);
 
             return [
