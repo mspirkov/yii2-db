@@ -29,7 +29,9 @@ to the `require` section of your `composer.json` file.
 
 ### AbstractRepository
 
-An abstract class for creating repositories that interact with ActiveRecord models. Basic usage example:
+An abstract class for creating repositories that interact with ActiveRecord models. Contains the most commonly used methods: `findOne`, `findAll`, `save`, etc., and adds several additional methods: `findOneWith`, `findAllWith`.
+
+Basic usage example:
 
 ```php
 /**
@@ -54,6 +56,67 @@ class CustomerService
     public function getCustomerData(int $id): ?Customer
     {
         return $this->customerRepository->findOne($id);
+    }
+}
+```
+
+## TransactionManager
+
+A utility class for managing database transactions with a consistent and safe approach.
+
+This class simplifies the process of wrapping database operations within transactions,
+ensuring that changes are either fully committed or completely rolled back in case of errors.
+
+It provides two main methods:
+-   `wrap` for executing a callable within a transaction and re-throwing any exceptions
+-   `safeWrap` for executing a callable within a transaction, logging exceptions, and returning a
+    boolean indicating success.
+
+Basic usage example:
+
+```php
+class DbTransactionManager extends TransactionManager
+{
+    public function __construct()
+    {
+        parent::__construct(Yii::$app->db);
+    }
+}
+```
+
+```php
+class ProductService
+{
+    public function __construct(
+        private readonly DbTransactionManager $dbTransactionManager,
+        private readonly ProductFilesystem $productFilesystem,
+        private readonly ProductRepository $productRepository,
+    ) {}
+
+    /**
+     * @return array{success: bool, message?: string}
+     */
+    public function deleteProduct(int $id): array
+    {
+        // Some logic here
+
+        $transactionResult = $this->dbTransactionManager->safeWrap(function () use ($product) {
+            $this->productRepository->delete($product)
+            $this->productFilesystem->delete($product->preview_filename);
+
+            return [
+                'success' => true,
+            ];
+        });
+
+        if ($transactionResult === false) {
+            return [
+                'success' => false,
+                'message' => 'Something went wrong',
+            ];
+        }
+
+        return $transactionResult;
     }
 }
 ```
