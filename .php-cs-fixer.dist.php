@@ -9,8 +9,8 @@ $finder = (new Finder())->in(__DIR__);
 
 return (new Config())
     ->setRules([
-        '@PER-CS3.0' => true,
-        '@PHP74Migration' => true,
+        '@PHP7x4Migration' => true,
+        '@PER-CS3x0' => true,
         'align_multiline_comment' => true,
         'binary_operator_spaces' => true,
         'blank_line_before_statement' => [
@@ -106,6 +106,7 @@ return (new Config())
         ],
         'single_quote' => true,
         'standardize_increment' => true,
+        'trailing_comma_in_multiline' => true,
         'trim_array_spaces' => true,
         'type_declaration_spaces' => [
             'elements' => [
