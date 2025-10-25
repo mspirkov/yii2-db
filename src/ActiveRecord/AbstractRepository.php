@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MSpirkov\Yii2\Extensions\Db\ActiveRecord;
+namespace MSpirkov\Yii2\Db\ActiveRecord;
 
 use Exception;
 use Throwable;

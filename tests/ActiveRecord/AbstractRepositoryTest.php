@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MSpirkov\Yii2\Extensions\Db\Tests\ActiveRecord;
+namespace MSpirkov\Yii2\Db\Tests\ActiveRecord;
 
-use MSpirkov\Yii2\Extensions\Db\Tests\AbstractTestCase;
+use MSpirkov\Yii2\Db\Tests\AbstractTestCase;
 use yii\db\Exception as DbException;
 
 class AbstractRepositoryTest extends AbstractTestCase
