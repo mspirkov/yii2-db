@@ -31,6 +31,8 @@ to the `require` section of your `composer.json` file.
 
 An abstract class for creating repositories that interact with ActiveRecord models. Contains the most commonly used methods: `findOne`, `findAll`, `save`, etc. Adds several additional methods: `findOneWith`, `findAllWith`.
 
+This way, you can separate the logic of executing queries from the ActiveRecord models themselves. This will make your ActiveRecord models thinner and simpler. It will also make testing easier, as you can mock the methods for working with the database.
+
 Basic usage example:
 
 ```php
@@ -68,6 +70,7 @@ This class simplifies the process of wrapping database operations within transac
 ensuring that changes are either fully committed or completely rolled back in case of errors.
 
 It provides two main methods:
+
 -   `wrap` for executing a callable within a transaction and re-throwing any exceptions
 -   `safeWrap` for executing a callable within a transaction, logging exceptions, and returning a
     boolean indicating success.
