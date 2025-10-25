@@ -27,7 +27,7 @@ to the `require` section of your `composer.json` file.
 
 ### ActiveRecord
 
-### AbstractRepository
+#### AbstractRepository
 
 An abstract class for creating repositories that interact with ActiveRecord models. Contains the most commonly used methods: `findOne`, `findAll`, `save`, etc., and adds several additional methods: `findOneWith`, `findAllWith`.
 
