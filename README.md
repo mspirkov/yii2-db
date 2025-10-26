@@ -73,9 +73,8 @@ ensuring that changes are either fully committed or completely rolled back in ca
 
 It provides two main methods:
 
--   `wrap` for executing a callable within a transaction and re-throwing any exceptions
--   `safeWrap` for executing a callable within a transaction, logging exceptions, and returning a
-    boolean indicating success.
+-   `safeWrap` - executes a callable within a transaction, safely handling exceptions and logging them.
+-   `wrap` - executes a callable within a transaction.
 
 Usage example:
 
