@@ -2,7 +2,7 @@ FROM php:8.4-cli-alpine
 
 RUN docker-php-ext-install pdo pdo_mysql
 RUN apk update && apk add --no-cache \
-    php83-dev \
+    php84-dev \
     autoconf \
     make \
     gcc \
