@@ -16,6 +16,8 @@ use yii\db\TableSchema;
 /**
  * An abstract class for creating repositories that interact with ActiveRecord models.
  *
+ * @author Maksim Spirkov <spirkov.2001@mail.ru>
+ *
  * @template T of ActiveRecord
  *
  * @immutable
