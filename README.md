@@ -25,17 +25,15 @@ or add
 
 to the `require` section of your `composer.json` file.
 
-## Usage
+## Components
 
-### ActiveRecord
-
-#### AbstractRepository
+### AbstractRepository
 
 An abstract class for creating repositories that interact with ActiveRecord models. Contains the most commonly used methods: `findOne`, `findAll`, `save` and others. It also has several additional methods: `findOneWith`, `findAllWith`.
 
 This way, you can separate the logic of executing queries from the ActiveRecord models themselves. This will make your ActiveRecord models thinner and simpler. It will also make testing easier, as you can mock the methods for working with the database.
 
-Usage example:
+#### Usage example:
 
 ```php
 /**
@@ -76,7 +74,7 @@ It provides two main methods:
 -   `safeWrap` - executes a callable within a transaction, safely handling exceptions and logging them.
 -   `wrap` - executes a callable within a transaction.
 
-Usage example:
+#### Usage example:
 
 ```php
 class DbTransactionManager extends TransactionManager
