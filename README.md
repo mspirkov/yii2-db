@@ -102,6 +102,8 @@ class ProductService
     {
         $product = $this->productRepository->findOne($id);
 
+        // There's some logic here. For example, checking for the existence of a product.
+
         $transactionResult = $this->transactionManager->safeWrap(function () use ($product) {
             $this->productRepository->delete($product);
             $this->productFilesystem->delete($product->preview_filename);
