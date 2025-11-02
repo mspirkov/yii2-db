@@ -102,8 +102,6 @@ class ProductService
     {
         $product = $this->productRepository->findOne($id);
 
-        // Checks before performing the deletion
-
         $transactionResult = $this->transactionManager->safeWrap(function () use ($product) {
             $this->productRepository->delete($product);
             $this->productFilesystem->delete($product->preview_filename);
