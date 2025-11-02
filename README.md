@@ -77,7 +77,7 @@ It provides two main methods:
 #### Usage example:
 
 ```php
-class DbTransactionManager extends TransactionManager
+class TransactionManager extends \MSpirkov\Yii2\Db\TransactionManager
 {
     public function __construct()
     {
@@ -90,7 +90,7 @@ class DbTransactionManager extends TransactionManager
 class ProductService
 {
     public function __construct(
-        private readonly DbTransactionManager $dbTransactionManager,
+        private readonly TransactionManager $transactionManager,
         private readonly ProductFilesystem $productFilesystem,
         private readonly ProductRepository $productRepository,
     ) {}
@@ -104,7 +104,7 @@ class ProductService
 
         // Checks before performing the deletion
 
-        $transactionResult = $this->dbTransactionManager->safeWrap(function () use ($product) {
+        $transactionResult = $this->transactionManager->safeWrap(function () use ($product) {
             $this->productRepository->delete($product);
             $this->productFilesystem->delete($product->preview_filename);
 
