@@ -31,7 +31,7 @@ jobs:
       - name: Setup
         uses: ./.github/composite-actions/setup
         with:
-          php: "7.4"
+          php-version: "7.4"
 
       - name: Run PhpCsFixer
         run: vendor/bin/php-cs-fixer check
@@ -46,7 +46,7 @@ jobs:
       - name: Setup
         uses: ./.github/composite-actions/setup
         with:
-          php: "7.4"
+          php-version: "7.4"
 
       - name: Run Rector
         run: vendor/bin/rector process --dry-run
@@ -70,9 +70,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ["7.4", "8.0", "8.1", "8.2", "8.3", "8.4", "8.5"]
+        include:
+          - php-version: ["7.4", "8.0", "8.1", "8.2", "8.3", "8.4", "8.5"]
 
-    name: PHP ${{ matrix.php }} checks
+    name: PHP ${{ matrix.php-version }} checks
 
     steps:
       - name: Checkout code
@@ -81,7 +82,7 @@ jobs:
       - name: Setup
         uses: ./.github/composite-actions/setup
         with:
-          php: ${{ matrix.php }}
+          php-version: ${{ matrix.php-version }}
 
       - name: Run tests
         run: vendor/bin/phpunit -c phpunit.dist.xml
