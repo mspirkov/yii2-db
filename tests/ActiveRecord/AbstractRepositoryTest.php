@@ -32,7 +32,7 @@ class AbstractRepositoryTest extends AbstractTestCase
     public function testFindOneNonExistentCustomerEmail(): void
     {
         $result = $this->customerRepository->findOne(['email' => self::NON_EXISTENT_CUSTOMER_EMAIL]);
-        $this->assertNull($result);
+        self::assertNull($result);
     }
 
     public function testFindOne(): void
@@ -44,9 +44,9 @@ class AbstractRepositoryTest extends AbstractTestCase
 
         $result = $this->customerRepository->findOne(['email' => $customer->email]);
 
-        $this->assertNotNull($result);
-        $this->assertSame($customer->email, $result->email);
-        $this->assertSame($customer->name, $result->name);
+        self::assertNotNull($result);
+        self::assertSame($customer->email, $result->email);
+        self::assertSame($customer->name, $result->name);
     }
 
     public function testFindOneWithNonExistentCustomerEmail(): void
@@ -56,7 +56,7 @@ class AbstractRepositoryTest extends AbstractTestCase
             'order'
         );
 
-        $this->assertNull($result);
+        self::assertNull($result);
     }
 
     public function testFindOneWith(): void
@@ -72,24 +72,24 @@ class AbstractRepositoryTest extends AbstractTestCase
 
         $result = $this->customerRepository->findOneWith(['email' => $customer->email], 'orders');
 
-        $this->assertNotNull($result);
-        $this->assertSame($customer->email, $result->email);
-        $this->assertSame($customer->name, $result->name);
-        $this->assertTrue($result->isRelationPopulated('orders'));
-        $this->assertCount(1, $result->orders);
-        $this->assertSame($order->customer_id, $customer->id);
+        self::assertNotNull($result);
+        self::assertSame($customer->email, $result->email);
+        self::assertSame($customer->name, $result->name);
+        self::assertTrue($result->isRelationPopulated('orders'));
+        self::assertCount(1, $result->orders);
+        self::assertSame($order->customer_id, $customer->id);
     }
 
     public function testFindAllByNonExistentCustomerEmail(): void
     {
         $result = $this->customerRepository->findAll(['email' => self::NON_EXISTENT_CUSTOMER_EMAIL]);
-        $this->assertCount(0, $result);
+        self::assertCount(0, $result);
     }
 
     public function testFindAllWithoutCondition(): void
     {
         $resultBeforeSave = $this->paymentSystemRepository->findAll();
-        $this->assertCount(0, $resultBeforeSave);
+        self::assertCount(0, $resultBeforeSave);
 
         $paymentSystem1 = new PaymentSystem();
         $paymentSystem1->name = 'PaymentSystem 1';
@@ -100,11 +100,11 @@ class AbstractRepositoryTest extends AbstractTestCase
         $paymentSystem2->save();
 
         $resultAfterSave = $this->paymentSystemRepository->findAll();
-        $this->assertCount(2, $resultAfterSave);
-        $this->assertSame($paymentSystem1->id, $resultAfterSave[0]->id);
-        $this->assertSame($paymentSystem1->name, $resultAfterSave[0]->name);
-        $this->assertSame($paymentSystem2->id, $resultAfterSave[1]->id);
-        $this->assertSame($paymentSystem2->name, $resultAfterSave[1]->name);
+        self::assertCount(2, $resultAfterSave);
+        self::assertSame($paymentSystem1->id, $resultAfterSave[0]->id);
+        self::assertSame($paymentSystem1->name, $resultAfterSave[0]->name);
+        self::assertSame($paymentSystem2->id, $resultAfterSave[1]->id);
+        self::assertSame($paymentSystem2->name, $resultAfterSave[1]->name);
     }
 
     public function testFindAll(): void
@@ -124,9 +124,9 @@ class AbstractRepositoryTest extends AbstractTestCase
 
         $result = $this->orderRepository->findAll(['customer_id' => $customer->id]);
 
-        $this->assertCount(2, $result);
-        $this->assertSame($customer->id, $result[0]->customer_id);
-        $this->assertSame($customer->id, $result[1]->customer_id);
+        self::assertCount(2, $result);
+        self::assertSame($customer->id, $result[0]->customer_id);
+        self::assertSame($customer->id, $result[1]->customer_id);
     }
 
     public function testFindAllWithByNonExistentCustomerEmail(): void
@@ -136,13 +136,13 @@ class AbstractRepositoryTest extends AbstractTestCase
             'orders'
         );
 
-        $this->assertCount(0, $result);
+        self::assertCount(0, $result);
     }
 
     public function testFindAllWithWithoutCondition(): void
     {
         $resultBeforeSave = $this->cityRepository->findAllWith(null, 'country');
-        $this->assertCount(0, $resultBeforeSave);
+        self::assertCount(0, $resultBeforeSave);
 
         $country = new Country();
         $country->name = 'Some country';
@@ -159,19 +159,19 @@ class AbstractRepositoryTest extends AbstractTestCase
         $city2->save();
 
         $resultAfterSave = $this->cityRepository->findAllWith(null, 'country');
-        $this->assertCount(2, $resultAfterSave);
+        self::assertCount(2, $resultAfterSave);
 
-        $this->assertSame($city1->id, $resultAfterSave[0]->id);
-        $this->assertSame($city1->name, $resultAfterSave[0]->name);
-        $this->assertTrue($resultAfterSave[0]->isRelationPopulated('country'));
-        $this->assertSame($country->id, $resultAfterSave[0]->country->id);
-        $this->assertSame($country->name, $resultAfterSave[0]->country->name);
+        self::assertSame($city1->id, $resultAfterSave[0]->id);
+        self::assertSame($city1->name, $resultAfterSave[0]->name);
+        self::assertTrue($resultAfterSave[0]->isRelationPopulated('country'));
+        self::assertSame($country->id, $resultAfterSave[0]->country->id);
+        self::assertSame($country->name, $resultAfterSave[0]->country->name);
 
-        $this->assertSame($city2->id, $resultAfterSave[1]->id);
-        $this->assertSame($city2->name, $resultAfterSave[1]->name);
-        $this->assertTrue($resultAfterSave[1]->isRelationPopulated('country'));
-        $this->assertSame($country->id, $resultAfterSave[1]->country->id);
-        $this->assertSame($country->name, $resultAfterSave[1]->country->name);
+        self::assertSame($city2->id, $resultAfterSave[1]->id);
+        self::assertSame($city2->name, $resultAfterSave[1]->name);
+        self::assertTrue($resultAfterSave[1]->isRelationPopulated('country'));
+        self::assertSame($country->id, $resultAfterSave[1]->country->id);
+        self::assertSame($country->name, $resultAfterSave[1]->country->name);
     }
 
     public function testFindAllWith(): void
@@ -199,21 +199,21 @@ class AbstractRepositoryTest extends AbstractTestCase
             'orders'
         );
 
-        $this->assertCount(2, $result);
+        self::assertCount(2, $result);
 
-        $this->assertSame($customer1->id, $result[0]->id);
-        $this->assertSame($customer1->name, $result[0]->name);
-        $this->assertTrue($result[0]->isRelationPopulated('orders'));
-        $this->assertCount(2, $result[0]->orders);
+        self::assertSame($customer1->id, $result[0]->id);
+        self::assertSame($customer1->name, $result[0]->name);
+        self::assertTrue($result[0]->isRelationPopulated('orders'));
+        self::assertCount(2, $result[0]->orders);
 
-        $this->assertSame($order1->id, $result[0]->orders[0]->id);
-        $this->assertSame($customer1->id, $result[0]->orders[0]->customer_id);
-        $this->assertSame($order2->id, $result[0]->orders[1]->id);
-        $this->assertSame($customer1->id, $result[0]->orders[1]->customer_id);
+        self::assertSame($order1->id, $result[0]->orders[0]->id);
+        self::assertSame($customer1->id, $result[0]->orders[0]->customer_id);
+        self::assertSame($order2->id, $result[0]->orders[1]->id);
+        self::assertSame($customer1->id, $result[0]->orders[1]->customer_id);
 
-        $this->assertSame($customer2->id, $result[1]->id);
-        $this->assertTrue($result[1]->isRelationPopulated('orders'));
-        $this->assertCount(0, $result[1]->orders);
+        self::assertSame($customer2->id, $result[1]->id);
+        self::assertTrue($result[1]->isRelationPopulated('orders'));
+        self::assertCount(0, $result[1]->orders);
     }
 
     public function testSaveInvalidCustomerWithoutValidation(): void
@@ -229,7 +229,7 @@ class AbstractRepositoryTest extends AbstractTestCase
         $customer = new Customer();
 
         $result = $this->customerRepository->save($customer);
-        $this->assertFalse($result);
+        self::assertFalse($result);
     }
 
     public function testSave(): void
@@ -238,22 +238,22 @@ class AbstractRepositoryTest extends AbstractTestCase
         $customer->email = 'testsave1@gmail.com';
         $customer->name = 'Test Save 1';
 
-        $this->assertTrue($this->customerRepository->save($customer));
+        self::assertTrue($this->customerRepository->save($customer));
 
         $customerFromDb = Customer::findOne(['email' => $customer->email]);
-        $this->assertNotNull($customerFromDb);
-        $this->assertSame($customer->email, $customerFromDb->email);
-        $this->assertSame($customer->name, $customerFromDb->name);
+        self::assertNotNull($customerFromDb);
+        self::assertSame($customer->email, $customerFromDb->email);
+        self::assertSame($customer->name, $customerFromDb->name);
 
         $customer->email = 'testsave2@gmail.com';
         $customer->name = 'Test Save 2';
 
-        $this->assertTrue($this->customerRepository->save($customer, true, ['email']));
+        self::assertTrue($this->customerRepository->save($customer, true, ['email']));
 
         $customerFromDb = Customer::findOne(['email' => $customer->email]);
-        $this->assertNotNull($customerFromDb);
-        $this->assertSame($customer->email, $customerFromDb->email);
-        $this->assertSame('Test Save 1', $customerFromDb->name);
+        self::assertNotNull($customerFromDb);
+        self::assertSame($customer->email, $customerFromDb->email);
+        self::assertSame('Test Save 1', $customerFromDb->name);
     }
 
     public function testDeleteNotSavedCustomer(): void
@@ -263,7 +263,7 @@ class AbstractRepositoryTest extends AbstractTestCase
         $customer->name = 'Test delete';
 
         $result = $this->customerRepository->delete($customer);
-        $this->assertSame(0, $result);
+        self::assertSame(0, $result);
     }
 
     public function testDelete(): void
@@ -274,7 +274,7 @@ class AbstractRepositoryTest extends AbstractTestCase
         $customer->save();
 
         $result = $this->customerRepository->delete($customer);
-        $this->assertSame(1, $result);
+        self::assertSame(1, $result);
     }
 
     public function testUpdateAllByNonExistentCustomerEmail(): void
@@ -284,7 +284,7 @@ class AbstractRepositoryTest extends AbstractTestCase
             ['email' => self::NON_EXISTENT_CUSTOMER_EMAIL]
         );
 
-        $this->assertSame(0, $result);
+        self::assertSame(0, $result);
     }
 
     public function testUpdateAllWithParams(): void
@@ -301,11 +301,11 @@ class AbstractRepositoryTest extends AbstractTestCase
             ['email' => $customer->email]
         );
 
-        $this->assertSame(1, $result);
+        self::assertSame(1, $result);
 
         $customerFromDb = Customer::findOne(['email' => $customer->email]);
-        $this->assertNotNull($customerFromDb);
-        $this->assertSame($newName, $customerFromDb->name);
+        self::assertNotNull($customerFromDb);
+        self::assertSame($newName, $customerFromDb->name);
     }
 
     public function testUpdateAll(): void
@@ -326,21 +326,21 @@ class AbstractRepositoryTest extends AbstractTestCase
             ['in', 'email', [$customer1->email, $customer2->email]]
         );
 
-        $this->assertSame(2, $result);
+        self::assertSame(2, $result);
 
         $customerFromDb1 = Customer::findOne(['email' => $customer1->email]);
-        $this->assertNotNull($customerFromDb1);
-        $this->assertSame($newName, $customerFromDb1->name);
+        self::assertNotNull($customerFromDb1);
+        self::assertSame($newName, $customerFromDb1->name);
 
         $customerFromDb2 = Customer::findOne(['email' => $customer2->email]);
-        $this->assertNotNull($customerFromDb2);
-        $this->assertSame($newName, $customerFromDb2->name);
+        self::assertNotNull($customerFromDb2);
+        self::assertSame($newName, $customerFromDb2->name);
     }
 
     public function testDeleteAllByNonExistentCustomerEmail(): void
     {
         $result = $this->customerRepository->deleteAll(['email' => self::NON_EXISTENT_CUSTOMER_EMAIL]);
-        $this->assertSame(0, $result);
+        self::assertSame(0, $result);
     }
 
     public function testDeleteAllWithParams(): void
@@ -351,8 +351,8 @@ class AbstractRepositoryTest extends AbstractTestCase
         $customer->save();
 
         $result = $this->customerRepository->deleteAll('email = :email', ['email' => $customer->email]);
-        $this->assertSame(1, $result);
-        $this->assertNull(Customer::findOne(['email' => $customer->email]));
+        self::assertSame(1, $result);
+        self::assertNull(Customer::findOne(['email' => $customer->email]));
     }
 
     public function testDeleteAll(): void
@@ -370,22 +370,22 @@ class AbstractRepositoryTest extends AbstractTestCase
         $condition = ['in', 'email', [$customer1->email, $customer2->email]];
         $result = $this->customerRepository->deleteAll($condition);
 
-        $this->assertSame(2, $result);
-        $this->assertFalse(Customer::find()->where($condition)->exists());
+        self::assertSame(2, $result);
+        self::assertFalse(Customer::find()->where($condition)->exists());
     }
 
     public function testGetTableSchema(): void
     {
         $customerSchema = $this->customerRepository->getTableSchema();
-        $this->assertSame('customers', $customerSchema->fullName);
-        $this->assertSame(['id', 'email', 'name'], $customerSchema->columnNames);
+        self::assertSame('customers', $customerSchema->fullName);
+        self::assertSame(['id', 'email', 'name'], $customerSchema->columnNames);
 
         $orderSchema = $this->orderRepository->getTableSchema();
-        $this->assertSame('orders', $orderSchema->fullName);
-        $this->assertSame(['id', 'customer_id'], $orderSchema->columnNames);
+        self::assertSame('orders', $orderSchema->fullName);
+        self::assertSame(['id', 'customer_id'], $orderSchema->columnNames);
 
         $paymentSystemSchema = $this->paymentSystemRepository->getTableSchema();
-        $this->assertSame('payment_systems', $paymentSystemSchema->fullName);
-        $this->assertSame(['id', 'name'], $paymentSystemSchema->columnNames);
+        self::assertSame('payment_systems', $paymentSystemSchema->fullName);
+        self::assertSame(['id', 'name'], $paymentSystemSchema->columnNames);
     }
 }

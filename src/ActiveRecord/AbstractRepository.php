@@ -10,7 +10,6 @@ use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\ExpressionInterface;
-use yii\db\StaleObjectException;
 use yii\db\TableSchema;
 
 /**
@@ -138,8 +137,6 @@ abstract class AbstractRepository
      *
      * @param T $model The ActiveRecord model to delete.
      *
-     * @throws StaleObjectException If optimistic locking is enabled and the data being deleted
-     * is outdated.
      * @throws Throwable In case delete failed.
      *
      * @return int|false The number of rows deleted, or `false` if the deletion is unsuccessful

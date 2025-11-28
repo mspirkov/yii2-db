@@ -1,9 +1,39 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/shipmonk/phpstan-rules/rules.neon
+
 parameters:
     level: max
 
     paths:
         - src
         - tests
+
+    checkBenevolentUnionTypes: true
+    checkMissingCallableSignature: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    reportPossiblyNonexistentConstantArrayOffset: true
+    reportMaybesInPropertyPhpDocTypes: false
+
+    strictRules:
+        booleansInConditions: false
+        booleansInLoopConditions: false
+        disallowedEmpty: false
+        disallowedShortTernary: false
+
+    shipmonkRules:
+        forbidNullInBinaryOperations:
+            enabled: false
+        forbidCheckedExceptionInCallable:
+            enabled: false
+        forbidNullInInterpolatedString:
+            enabled: false
+        forbidCast:
+            enabled: false
+        enforceReadonlyPublicProperty:
+            enabled: false
+        enforceListReturn:
+            enabled: false
 
     bootstrapFiles:
         - phpstan/bootstrap.php
@@ -15,14 +45,39 @@ parameters:
         - YII_ENV_PROD
         - YII_ENV_TEST
 
-    # Will be fixed in version 2.0.54
     ignoreErrors:
+        # TODO: Remove after updating yiisoft/yii2
         -
             message: '#^Parameter \#1 \$message of static method yii\\BaseYii\:\:error\(\) expects array\|string\, Throwable given\.$#'
             count: 1
             path: src/TransactionManager.php
 
+        # TODO: Remove after updating yiisoft/yii2
         -
             message: '#^Parameter \#1 \$message of static method yii\\BaseYii\:\:warning\(\) expects array\|string\, Throwable given\.$#'
             count: 1
             path: tests/TransactionManagerTest.php
+
+        # TODO: Remove after updating shipmonk/phpstan-rules
+        -
+            message: '#^Missing native return typehint bool$#'
+            count: 1
+            path: src/TransactionManager.php
+
+        -
+            message: '#^Missing native return typehint int\|false$#'
+            count: 1
+            reportUnmatched: false # fails only for PHP > 7.4
+            path: src/ActiveRecord/AbstractRepository.php
+
+        -
+            message: '#^Missing native return typehint int\|bool$#'
+            count: 1
+            reportUnmatched: false # fails only for PHP 8.0 and 8.1
+            path: src/ActiveRecord/AbstractRepository.php
+
+        -
+            message: '#^Missing native return typehint mixed$#'
+            count: 1
+            reportUnmatched: false # fails only for PHP > 7.4
+            path: src/TransactionManager.php
