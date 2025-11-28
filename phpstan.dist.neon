@@ -71,6 +71,12 @@ parameters:
             path: src/ActiveRecord/AbstractRepository.php
 
         -
+            message: '#^Missing native return typehint int\|bool$#'
+            count: 1
+            reportUnmatched: false # fails only for PHP 8.0 and 8.1
+            path: src/ActiveRecord/AbstractRepository.php
+
+        -
             message: '#^Missing native return typehint mixed$#'
             count: 1
             reportUnmatched: false # fails only for PHP > 7.4
