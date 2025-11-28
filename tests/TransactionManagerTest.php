@@ -37,13 +37,13 @@ class TransactionManagerTest extends AbstractTestCase
             return true;
         });
 
-        $this->assertTrue($transactionResult);
+        self::assertTrue($transactionResult);
 
         $rowsCount = (int) Yii::$app->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
-        $this->assertSame(2, $rowsCount);
+        self::assertSame(2, $rowsCount);
 
         $exception = new Exception('Test transactions 1');
 
@@ -61,13 +61,13 @@ class TransactionManagerTest extends AbstractTestCase
         } catch (Exception $transactionException) {
         }
 
-        $this->assertSame($exception, $transactionException);
+        self::assertSame($exception, $transactionException);
 
         $rowsCount = (int) Yii::$app->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
-        $this->assertSame(2, $rowsCount);
+        self::assertSame(2, $rowsCount);
     }
 
     public function testSafeWrap(): void
@@ -86,13 +86,13 @@ class TransactionManagerTest extends AbstractTestCase
             return true;
         });
 
-        $this->assertTrue($transactionResult);
+        self::assertTrue($transactionResult);
 
         $rowsCount = (int) Yii::$app->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
-        $this->assertSame(2, $rowsCount);
+        self::assertSame(2, $rowsCount);
 
         $exception = new Exception('Test transactions 2');
 
@@ -108,18 +108,18 @@ class TransactionManagerTest extends AbstractTestCase
             throw $exception;
         });
 
-        $this->assertFalse($transactionResult);
+        self::assertFalse($transactionResult);
 
         $loggedMessage = $this->getMessageFromLogger($exception->getMessage());
-        $this->assertNotNull($loggedMessage);
-        $this->assertSame($exception, $loggedMessage[0]);
-        $this->assertSame(Logger::LEVEL_ERROR, $loggedMessage[1]);
+        self::assertNotNull($loggedMessage);
+        self::assertSame($exception, $loggedMessage[0]);
+        self::assertSame(Logger::LEVEL_ERROR, $loggedMessage[1]);
 
         $rowsCount = (int) Yii::$app->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
-        $this->assertSame(2, $rowsCount);
+        self::assertSame(2, $rowsCount);
     }
 
     public function testSafeWrapWithLogFunction(): void
@@ -146,13 +146,13 @@ class TransactionManagerTest extends AbstractTestCase
             $logFunction
         );
 
-        $this->assertTrue($transactionResult);
+        self::assertTrue($transactionResult);
 
         $rowsCount = (int) Yii::$app->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
-        $this->assertSame(2, $rowsCount);
+        self::assertSame(2, $rowsCount);
 
         $exception = new Exception('Test transactions 3');
 
@@ -172,18 +172,18 @@ class TransactionManagerTest extends AbstractTestCase
             $logFunction
         );
 
-        $this->assertFalse($transactionResult);
+        self::assertFalse($transactionResult);
 
         $loggedMessage = $this->getMessageFromLogger($exception->getMessage());
-        $this->assertNotNull($loggedMessage);
-        $this->assertSame($exception, $loggedMessage[0]);
-        $this->assertSame(Logger::LEVEL_WARNING, $loggedMessage[1]);
+        self::assertNotNull($loggedMessage);
+        self::assertSame($exception, $loggedMessage[0]);
+        self::assertSame(Logger::LEVEL_WARNING, $loggedMessage[1]);
 
         $rowsCount = (int) Yii::$app->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
-        $this->assertSame(2, $rowsCount);
+        self::assertSame(2, $rowsCount);
     }
 
     private function executeCommand(string $sql): void

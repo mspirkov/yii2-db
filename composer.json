@@ -33,7 +33,9 @@
         "friendsofphp/php-cs-fixer": "^3.89",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
-        "rector/rector": "^2.2"
+        "rector/rector": "^2.2",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "shipmonk/phpstan-rules": "^4.2"
     },
     "repositories": [
         {
