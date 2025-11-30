@@ -1,4 +1,10 @@
-<h1 align="center">Yii2 DB</h1>
+<p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    </a>
+    <h1 align="center">Yii2 - DB</h1>
+    <br>
+</p>
 
 A package of helper classes for working with databases in Yii2.
 
