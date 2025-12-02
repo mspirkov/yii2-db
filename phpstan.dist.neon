@@ -58,12 +58,6 @@ parameters:
             count: 1
             path: tests/TransactionManagerTest.php
 
-        # TODO: Remove after updating shipmonk/phpstan-rules
-        -
-            message: '#^Missing native return typehint bool$#'
-            count: 1
-            path: src/TransactionManager.php
-
         -
             message: '#^Missing native return typehint int\|false$#'
             count: 1
