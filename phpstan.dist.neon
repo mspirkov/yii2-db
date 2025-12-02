@@ -72,6 +72,6 @@ parameters:
 
         -
             message: '#^Missing native return typehint mixed$#'
-            count: 1
+            count: 2
             reportUnmatched: false # fails only for PHP > 7.4
             path: src/TransactionManager.php
