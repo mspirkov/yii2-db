@@ -33,7 +33,7 @@ jobs:
         with:
           php-version: "7.4"
 
-      - name: Run PhpCsFixer
+      - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer check
 
   rector:
