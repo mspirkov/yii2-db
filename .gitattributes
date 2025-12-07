@@ -6,7 +6,7 @@
 /.gitignore                     export-ignore
 /.php-cs-fixer.dist.php         export-ignore
 /phpstan.dist.neon              export-ignore
-/phpunit.dist.xml               export-ignore
+/phpunit.xml.dist               export-ignore
 /rector.php                     export-ignore
 /phpstan                        export-ignore
 /tests                          export-ignore
