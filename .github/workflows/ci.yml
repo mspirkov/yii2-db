@@ -91,7 +91,7 @@ jobs:
           php-version: ${{ matrix.php-version }}
 
       - name: Run tests
-        run: vendor/bin/phpunit -c phpunit.dist.xml
+        run: vendor/bin/phpunit
 
       - name: Run PHPStan
         run: vendor/bin/phpstan
