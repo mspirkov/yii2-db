@@ -15,25 +15,10 @@ parameters:
     reportPossiblyNonexistentConstantArrayOffset: true
     reportMaybesInPropertyPhpDocTypes: false
 
-    strictRules:
-        booleansInConditions: false
-        booleansInLoopConditions: false
-        disallowedEmpty: false
-        disallowedShortTernary: false
-
     shipmonkRules:
-        forbidNullInBinaryOperations:
-            enabled: false
-        forbidCheckedExceptionInCallable:
-            enabled: false
-        forbidNullInInterpolatedString:
-            enabled: false
-        forbidCast:
-            enabled: false
-        enforceReadonlyPublicProperty:
-            enabled: false
-        enforceListReturn:
-            enabled: false
+        classSuffixNaming:
+            superclassToSuffixMapping!:
+                \MSpirkov\Yii2\Db\Tests\AbstractTestCase: Test
 
     bootstrapFiles:
         - phpstan/bootstrap.php
@@ -75,3 +60,9 @@ parameters:
             count: 2
             reportUnmatched: false # fails only for PHP > 7.4
             path: src/TransactionManager.php
+
+        # We intentionally throw exceptions there.
+        -
+            message: '#^Throwing checked exception Exception in closure\!$#'
+            count: 3
+            path: tests/TransactionManagerTest.php
