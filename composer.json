@@ -35,7 +35,8 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "rector/rector": "^2.2",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "shipmonk/phpstan-rules": "^4.2"
+        "shipmonk/phpstan-rules": "^4.2",
+        "spaze/phpstan-disallowed-calls": "^4.7"
     },
     "repositories": [
         {
