@@ -20,6 +20,9 @@ class Customer extends ActiveRecord
         return '{{customers}}';
     }
 
+    /**
+     * @return list<array<array-key, mixed>>
+     */
     public function rules(): array
     {
         return [
