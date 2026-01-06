@@ -43,7 +43,7 @@ abstract class AbstractRepository
      *
      * @param mixed $condition The condition to search for. This can be a scalar value
      * (e.g., primary key), an array, or an `ExpressionInterface` object. See
-     * {@link \yii\db\BaseActiveRecord::findOne()} for more information.
+     * {@see \yii\db\BaseActiveRecord::findOne()} for more information.
      *
      * @return T|null ActiveRecord instance matching the condition, or `null` if nothing matches.
      */
@@ -57,9 +57,9 @@ abstract class AbstractRepository
      * the specified relations.
      *
      * @param string|array<array-key, mixed>|ExpressionInterface $condition The condition
-     * to search for. See {@link \yii\db\Query::where()} for more information.
+     * to search for. See {@see \yii\db\Query::where()} for more information.
      * @param string|array<array-key, mixed> $with The relations to eager load. This can
-     * be a single relation name or an array. See {@link \yii\db\ActiveQueryTrait::with()} for
+     * be a single relation name or an array. See {@see \yii\db\ActiveQueryTrait::with()} for
      * more information.
      *
      * @return T|null ActiveRecord instance matching the condition, or `null` if nothing matches.
@@ -74,7 +74,7 @@ abstract class AbstractRepository
      *
      * @param mixed $condition The condition to search for. This can be a scalar
      * value (e.g., primary key), an array, or an `ExpressionInterface` object.
-     * See {@link \yii\db\BaseActiveRecord::findAll()} for more information.
+     * See {@see \yii\db\BaseActiveRecord::findAll()} for more information.
      *
      * Note: If null, all models are returned.
      *
@@ -90,11 +90,11 @@ abstract class AbstractRepository
      * the specified relations.
      *
      * @param string|array<array-key, mixed>|ExpressionInterface|null $condition The condition
-     * to search for. See {@link \yii\db\Query::where()} for more information.
+     * to search for. See {@see \yii\db\Query::where()} for more information.
      *
      * Note: If null, all models are returned.
      * @param string|array<array-key, mixed> $with The relations to eager load. This can
-     * be a single relation name or an array. See {@link \yii\db\ActiveQueryTrait::with()} for
+     * be a single relation name or an array. See {@see \yii\db\ActiveQueryTrait::with()} for
      * more information.
      *
      * @return T[] An array of ActiveRecord model instances.
@@ -140,7 +140,7 @@ abstract class AbstractRepository
      * @throws Throwable In case delete failed.
      *
      * @return int|false The number of rows deleted, or `false` if the deletion is unsuccessful
-     * for some reason. See {@link \yii\db\ActiveRecord::delete()} for more information.
+     * for some reason. See {@see \yii\db\ActiveRecord::delete()} for more information.
      */
     public function delete(ActiveRecord $model)
     {
@@ -153,7 +153,7 @@ abstract class AbstractRepository
      * @param array<string, mixed> $attributes Attribute values (name-value pairs) to be saved
      * into the table.
      * @param string|array<array-key, mixed> $condition The conditions that will be put in the
-     * WHERE part of the UPDATE SQL. See {@link \yii\db\ActiveRecord::updateAll()} for
+     * WHERE part of the UPDATE SQL. See {@see \yii\db\ActiveRecord::updateAll()} for
      * more information.
      * @param array<string, mixed> $params The parameters (name => value) to be bound to the query.
      *
@@ -168,7 +168,7 @@ abstract class AbstractRepository
      * Deletes rows in the table using the provided conditions.
      *
      * @param string|array<array-key, mixed>|null $condition The conditions that will be put
-     * in the WHERE part of the DELETE SQL. See {@link \yii\db\ActiveRecord::deleteAll()} for
+     * in the WHERE part of the DELETE SQL. See {@see \yii\db\ActiveRecord::deleteAll()} for
      * more information.
      * @param array<string, mixed> $params The parameters (name => value) to be bound to the query.
      *
