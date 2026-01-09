@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MSpirkov\Yii2\Db\Tests\ActiveRecord;
+namespace MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository;
 
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
