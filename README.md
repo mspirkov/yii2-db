@@ -32,6 +32,10 @@ to the `require` section of your `composer.json` file.
 
 ## Components
 
+- [AbstractRepository](#abstractrepository)
+- [DateTimeBehavior](#datetimebehavior)
+- [TransactionManager](#transactionmanager)
+
 ### AbstractRepository
 
 An abstract class for creating repositories that interact with ActiveRecord models. Contains the most commonly used methods: `findOne`, `findAll`, `save` and others. It also has several additional methods: `findOneWith`, `findAllWith`.
@@ -67,6 +71,38 @@ class CustomerService
 }
 ```
 
+### DateTimeBehavior
+
+Behavior for ActiveRecord models that automatically fills the specified attributes with the current date and time.
+
+By default, this behavior uses the current date, time, and time zone. If necessary, you can specify your own
+attributes and time zone.
+
+#### Usage example:
+
+```php
+/**
+ * @property int $id
+ * @property string $content
+ * @property string $created_at
+ * @property string|null $updated_at
+ */
+class Message extends ActiveRecord
+{
+    public static function tableName(): string
+    {
+        return '{{messages}}';
+    }
+
+    public function behaviors(): array
+    {
+        return [
+            DateTimeBehavior::class,
+        ];
+    }
+}
+```
+
 ### TransactionManager
 
 A utility class for managing database transactions with a consistent and safe approach.
@@ -76,8 +112,8 @@ ensuring that changes are either fully committed or completely rolled back in ca
 
 It provides two main methods:
 
--   `safeWrap` - executes a callable within a transaction, safely handling exceptions and logging them.
--   `wrap` - executes a callable within a transaction.
+- `safeWrap` - executes a callable within a transaction, safely handling exceptions and logging them.
+- `wrap` - executes a callable within a transaction.
 
 #### Usage example:
 
