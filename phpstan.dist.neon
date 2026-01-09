@@ -61,9 +61,22 @@ parameters:
 
         -
             message: '#^Missing native return typehint mixed$#'
+            count: 1
+            reportUnmatched: false # fails only for PHP > 7.4
+            path: src/ActiveRecord/DateTimeBehavior.php
+
+        -
+            message: '#^Missing native return typehint mixed$#'
             count: 2
             reportUnmatched: false # fails only for PHP > 7.4
             path: src/TransactionManager.php
+
+        # This is a feature of the Yii2 components. The properties are public, but they can also be modified.
+        -
+            identifier: shipmonk.publicPropertyNotReadonly
+            count: 3
+            reportUnmatched: false # fails only for PHP > 8.0
+            path: src/ActiveRecord/DateTimeBehavior.php
 
         # We intentionally throw exceptions there.
         -
