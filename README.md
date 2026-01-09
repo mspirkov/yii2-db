@@ -25,7 +25,7 @@ php composer.phar require mspirkov/yii2-db
 or add
 
 ```json
-"mspirkov/yii2-db": "^0.1"
+"mspirkov/yii2-db": "^0.2"
 ```
 
 to the `require` section of your `composer.json` file.
