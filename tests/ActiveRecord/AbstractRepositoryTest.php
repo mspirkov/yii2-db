@@ -5,6 +5,15 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Db\Tests\ActiveRecord;
 
 use MSpirkov\Yii2\Db\Tests\AbstractTestCase;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\City;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\Country;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\Customer;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\Order;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\PaymentSystem;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Repositories\CityRepository;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Repositories\CustomerRepository;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Repositories\OrderRepository;
+use MSpirkov\Yii2\Db\Tests\ActiveRecord\Repositories\PaymentSystemRepository;
 use yii\db\Exception as DbException;
 
 class AbstractRepositoryTest extends AbstractTestCase
