@@ -18,6 +18,10 @@ use Yii;
  * attributes and time zone.
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
+ *
+ * @template T of BaseActiveRecord
+ *
+ * @extends AttributeBehavior<T>
  */
 class DateTimeBehavior extends AttributeBehavior
 {
