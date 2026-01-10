@@ -35,18 +35,6 @@ parameters:
         - YII_ENV_TEST
 
     ignoreErrors:
-        # TODO: Remove after updating yiisoft/yii2
-        -
-            message: '#^Parameter \#1 \$message of static method yii\\BaseYii\:\:error\(\) expects array\|string\, Throwable given\.$#'
-            count: 1
-            path: src/TransactionManager.php
-
-        # TODO: Remove after updating yiisoft/yii2
-        -
-            message: '#^Parameter \#1 \$message of static method yii\\BaseYii\:\:warning\(\) expects array\|string\, Throwable given\.$#'
-            count: 1
-            path: tests/TransactionManagerTest.php
-
         -
             message: '#^Missing native return typehint int\|false$#'
             count: 1
