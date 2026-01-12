@@ -132,8 +132,8 @@ use yii\db\Expression;
 /**
  * @property int $id
  * @property string $content
- * @property string $created_at
- * @property string|null $updated_at
+ * @property string $create_time
+ * @property string|null $update_time
  */
 class Message extends ActiveRecord
 {
