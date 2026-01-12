@@ -15,6 +15,36 @@ use yii\db\TableSchema;
 /**
  * An abstract class for creating repositories that interact with ActiveRecord models.
  *
+ * Contains the most commonly used methods:
+ *
+ * - {@see AbstractRepository::findOne()}
+ * - {@see AbstractRepository::findAll()}
+ * - {@see AbstractRepository::save()}
+ * - {@see AbstractRepository::delete()}
+ * - {@see AbstractRepository::updateAll()}
+ * - {@see AbstractRepository::deleteAll()}
+ *
+ * It also has several additional methods:
+ *
+ * - {@see AbstractRepository::findOneWith()}
+ * - {@see AbstractRepository::findAllWith()}
+ * - {@see AbstractRepository::getTableSchema()}
+ * - {@see AbstractRepository::find()}
+ *
+ * Usage example:
+ *
+ * ```
+ * use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
+ *
+ * class CustomerRepository extends AbstractRepository
+ * {
+ *     public function __construct()
+ *     {
+ *         parent::__construct(Customer::class);
+ *     }
+ * }
+ * ```
+ *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
  * @template T of ActiveRecord

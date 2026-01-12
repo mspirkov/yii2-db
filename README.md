@@ -45,6 +45,8 @@ This way, you can separate the logic of executing queries from the ActiveRecord 
 #### Usage example:
 
 ```php
+use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
+
 /**
  * @extends AbstractRepository<Customer>
  */
@@ -75,12 +77,11 @@ class CustomerService
 
 Behavior for ActiveRecord models that automatically fills the specified attributes with the current date and time.
 
-By default, this behavior uses the current date, time, and time zone. If necessary, you can specify your own
-attributes and time zone.
-
 #### Usage example:
 
 ```php
+use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
+
 /**
  * @property int $id
  * @property string $content
@@ -98,6 +99,44 @@ class Message extends ActiveRecord
     {
         return [
             DateTimeBehavior::class,
+        ];
+    }
+}
+```
+
+By default, this behavior will fill the `created_at` attribute with the date and time when the associated
+AR object is being inserted; it will fill the `updated_at` attribute with the date and time when the AR object
+is being updated. The date and time are determined relative to `$timeZone`.
+
+If your attribute names are different or you want to use a different way of calculating the timestamp,
+you may configure the `$createdAtAttribute`, `$updatedAtAttribute` and `$value` properties like the following:
+
+```php
+use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
+use yii\db\Expression;
+
+/**
+ * @property int $id
+ * @property string $content
+ * @property string $created_at
+ * @property string|null $updated_at
+ */
+class Message extends ActiveRecord
+{
+    public static function tableName(): string
+    {
+        return '{{messages}}';
+    }
+
+    public function behaviors(): array
+    {
+        return [
+            [
+                'class' => DateTimeBehavior::class,
+                'createdAtAttribute' => 'create_time',
+                'updatedAtAttribute' => 'update_time',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 }

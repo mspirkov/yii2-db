@@ -16,8 +16,33 @@ use yii\db\Connection;
  *
  * It provides two main methods:
  *
- * - `safeWrap` - executes a callable within a transaction, safely handling exceptions and logging them.
- * - `wrap` - executes a callable within a transaction.
+ * - {@see TransactionManager::safeWrap()} - executes a callable within a transaction, safely handling
+ *   exceptions and logging them.
+ * - {@see TransactionManager::wrap()} - executes a callable within a transaction.
+ *
+ * Usage examples:
+ *
+ * ```
+ * $transactionResult = $this->transactionManager->safeWrap(function () use ($product) {
+ *     $this->productRepository->delete($product);
+ *     $this->productFilesystem->delete($product->preview_filename);
+ *
+ *     return [
+ *         'success' => true,
+ *     ];
+ * });
+ * ```
+ *
+ * ```
+ * $this->transactionManager->wrap(function () use ($product) {
+ *     $this->productRepository->delete($product);
+ *     $this->productFilesystem->delete($product->preview_filename);
+ *
+ *     return [
+ *         'success' => true,
+ *     ];
+ * });
+ * ```
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
