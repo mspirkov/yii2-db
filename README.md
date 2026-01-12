@@ -56,7 +56,7 @@ It also has several additional methods:
 
 This way, you can separate the logic of executing queries from the ActiveRecord models themselves. This will make your ActiveRecord models thinner and simpler. It will also make testing easier, as you can mock the methods for working with the database.
 
-Usage example:
+#### Usage example:
 
 ```php
 use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
@@ -91,7 +91,7 @@ class CustomerService
 
 Behavior for ActiveRecord models that automatically fills the specified attributes with the current date and time.
 
-#### Usage example:
+Usage example:
 
 ```php
 use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
