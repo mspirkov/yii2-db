@@ -38,7 +38,8 @@ to the `require` section of your `composer.json` file.
 
 ### AbstractRepository
 
-Contains the most commonly used methods:
+An abstract class for creating repositories that interact with ActiveRecord models. Contains the most
+commonly used methods:
 
 - `findOne`
 - `findAll`
