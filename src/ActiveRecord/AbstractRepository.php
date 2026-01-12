@@ -17,19 +17,22 @@ use yii\db\TableSchema;
  *
  * Contains the most commonly used methods:
  *
- * - {@see AbstractRepository::findOne()}
- * - {@see AbstractRepository::findAll()}
- * - {@see AbstractRepository::save()}
- * - {@see AbstractRepository::delete()}
- * - {@see AbstractRepository::updateAll()}
- * - {@see AbstractRepository::deleteAll()}
+ * - {@see AbstractRepository::findOne()} - finds a single ActiveRecord model based on the provided condition.
+ * - {@see AbstractRepository::findAll()} - finds all ActiveRecord models based on the provided condition.
+ * - {@see AbstractRepository::save()} - saves an ActiveRecord model to the database.
+ * - {@see AbstractRepository::delete()} - deletes an ActiveRecord model from the database.
+ * - {@see AbstractRepository::updateAll()} - updates the whole table using the provided attribute values and conditions.
+ * - {@see AbstractRepository::deleteAll()} - deletes rows in the table using the provided conditions.
  *
  * It also has several additional methods:
  *
- * - {@see AbstractRepository::findOneWith()}
- * - {@see AbstractRepository::findAllWith()}
- * - {@see AbstractRepository::getTableSchema()}
- * - {@see AbstractRepository::find()}
+ * - {@see AbstractRepository::findOneWith()} - finds a single ActiveRecord model based on the provided condition
+ *   and eager loads the specified relations.
+ * - {@see AbstractRepository::findAllWith()} - finds all ActiveRecord models based on the provided condition and
+ *   eager loads the specified relations.
+ * - {@see AbstractRepository::getTableSchema()} - returns the schema information of the DB table associated with
+ *   current ActiveRecord class.
+ * - {@see AbstractRepository::find()} - creates and returns a new ActiveQuery instance for the current ActiveRecord model.
  *
  * Usage example:
  *
