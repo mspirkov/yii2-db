@@ -42,19 +42,21 @@ An abstract class for creating repositories that interact with ActiveRecord mode
 
 Contains the most commonly used methods:
 
-- `findOne`
-- `findAll`
-- `save`
-- `delete`
-- `updateAll`
-- `deleteAll`
+- `findOne` - finds a single ActiveRecord model based on the provided condition.
+- `findAll` - finds all ActiveRecord models based on the provided condition.
+- `save` - saves an ActiveRecord model to the database.
+- `delete` - deletes an ActiveRecord model from the database.
+- `updateAll` - updates the whole table using the provided attribute values and conditions.
+- `deleteAll` - deletes rows in the table using the provided conditions.
 
 It also has several additional methods:
 
-- `findOneWith`
-- `findAllWith`
-- `getTableSchema`
-- `find`
+- `findOneWith` - finds a single ActiveRecord model based on the provided condition and eager loads
+  the specified relations.
+- `findAllWith` - finds all ActiveRecord models based on the provided condition and eager loads
+  the specified relations.
+- `getTableSchema` - returns the schema information of the DB table associated with current ActiveRecord class.
+- `find` - creates and returns a new ActiveQuery instance for the current ActiveRecord model.
 
 This way, you can separate the logic of executing queries from the ActiveRecord models themselves. This will make your ActiveRecord models thinner and simpler. It will also make testing easier, as you can mock the methods for working with the database.
 
