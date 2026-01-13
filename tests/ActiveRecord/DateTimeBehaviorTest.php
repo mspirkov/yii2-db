@@ -6,7 +6,6 @@ namespace MSpirkov\Yii2\Db\Tests\ActiveRecord;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
 use MSpirkov\Yii2\Db\Tests\AbstractTestCase;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\Message;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\MessageWithCustomTimeZone;
@@ -16,6 +15,8 @@ use Yii;
 
 class DateTimeBehaviorTest extends AbstractTestCase
 {
+    private const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
+
     public function testCreateAndUpdateByDefault(): void
     {
         $dateTimeZone = new DateTimeZone(Yii::$app->timeZone);
@@ -32,7 +33,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
         $createdAtDateTime = new DateTimeImmutable($createdAt, $dateTimeZone);
         $createdAtTimestamp = $createdAtDateTime->getTimestamp();
 
-        self::assertSame($createdAt, $createdAtDateTime->format(DateTimeBehavior::DATETIME_DB_FORMAT));
+        self::assertSame($createdAt, $createdAtDateTime->format(self::DATETIME_DB_FORMAT));
         self::assertTrue($createdAtTimestamp >= $timeBeforeCreating);
         self::assertTrue($createdAtTimestamp <= $timeAfterCreating);
         self::assertNull($message->updated_at);
@@ -53,7 +54,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
         self::assertTrue($updatedAtTimestamp >= $timeBeforeUpdating);
         self::assertTrue($updatedAtTimestamp <= $timeAfterUpdating);
-        self::assertSame($updatedAt, $updatedAtDateTime->format(DateTimeBehavior::DATETIME_DB_FORMAT));
+        self::assertSame($updatedAt, $updatedAtDateTime->format(self::DATETIME_DB_FORMAT));
         self::assertSame($createdAt, $message->created_at);
     }
 
@@ -73,7 +74,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
         $createdAtDateTime = new DateTimeImmutable($createdAt, $dateTimeZone);
         $createdAtTimestamp = $createdAtDateTime->getTimestamp();
 
-        self::assertSame($createdAt, $createdAtDateTime->format(DateTimeBehavior::DATETIME_DB_FORMAT));
+        self::assertSame($createdAt, $createdAtDateTime->format(self::DATETIME_DB_FORMAT));
         self::assertTrue($createdAtTimestamp >= $timeBeforeCreating);
         self::assertTrue($createdAtTimestamp <= $timeAfterCreating);
         self::assertNull($message->updated_at);
@@ -94,7 +95,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
         self::assertTrue($updatedAtTimestamp >= $timeBeforeUpdating);
         self::assertTrue($updatedAtTimestamp <= $timeAfterUpdating);
-        self::assertSame($updatedAt, $updatedAtDateTime->format(DateTimeBehavior::DATETIME_DB_FORMAT));
+        self::assertSame($updatedAt, $updatedAtDateTime->format(self::DATETIME_DB_FORMAT));
         self::assertSame($createdAt, $message->created_at);
     }
 
@@ -113,7 +114,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
         $createdAtDateTime = new DateTimeImmutable($visit->created_at, $dateTimeZone);
         $createdAtTimestamp = $createdAtDateTime->getTimestamp();
 
-        self::assertSame($visit->created_at, $createdAtDateTime->format(DateTimeBehavior::DATETIME_DB_FORMAT));
+        self::assertSame($visit->created_at, $createdAtDateTime->format(self::DATETIME_DB_FORMAT));
         self::assertTrue($createdAtTimestamp >= $timeBeforeCreating);
         self::assertTrue($createdAtTimestamp <= $timeAfterCreating);
     }

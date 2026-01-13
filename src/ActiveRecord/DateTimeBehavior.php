@@ -60,7 +60,7 @@ use Yii;
  */
 class DateTimeBehavior extends AttributeBehavior
 {
-    public const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
+    private const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
 
     /**
      * An attribute that will receive a value when the record is created.
