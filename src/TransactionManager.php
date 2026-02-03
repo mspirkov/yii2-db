@@ -7,6 +7,7 @@ namespace MSpirkov\Yii2\Db;
 use Throwable;
 use Yii;
 use yii\db\Connection;
+use yii\db\Transaction;
 
 /**
  * A utility class for managing database transactions with a consistent and safe approach.
@@ -73,7 +74,7 @@ class TransactionManager
      *
      * @param callable(): T $function The callable to execute within the transaction.
      * @param string|null $isolationLevel The isolation level to use for the transaction. If `null`, the
-     * default isolation level is used. See {@see \yii\db\Transaction::begin()} for possible values.
+     * default isolation level is used. See {@see Transaction::begin()} for possible values.
      * @param (callable(Throwable): void)|null $logFunction An optional callable to handle logging of
      * exceptions. If `null`, then `Yii::error` will be used to log the exception.
      *
@@ -108,7 +109,7 @@ class TransactionManager
      *
      * @param callable(): T $function The callable to execute within the transaction.
      * @param string|null $isolationLevel The isolation level to use for the transaction. If `null`, the
-     * default isolation level is used. See {@see \yii\db\Transaction::begin()} for possible values.
+     * default isolation level is used. See {@see Transaction::begin()} for possible values.
      *
      * @throws Throwable If an exception occurs within the callable or the transaction fails to start.
      *
