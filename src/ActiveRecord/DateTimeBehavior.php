@@ -54,7 +54,7 @@ use Yii;
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
- * @template T of BaseActiveRecord
+ * @template T of BaseActiveRecord = BaseActiveRecord
  *
  * @extends AttributeBehavior<T>
  */
