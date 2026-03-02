@@ -45,7 +45,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
         $timeAfterUpdating = time();
 
-        /** @var string|null */
+        /** @var string|null $updatedAt */
         $updatedAt = $message->updated_at;
         self::assertIsString($updatedAt);
 
@@ -86,7 +86,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
         $timeAfterUpdating = time();
 
-        /** @var string|null */
+        /** @var string|null $updatedAt */
         $updatedAt = $message->updated_at;
         self::assertIsString($updatedAt);
 

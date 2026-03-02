@@ -12,6 +12,9 @@ $pdo = new PDO('mysql:host=' . TEST_DB_HOST, TEST_DB_USERNAME, TEST_DB_PASSWORD,
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-/** @var string */
-$dbSql = file_get_contents(__DIR__ . '/db.sql');
-$pdo->exec($dbSql);
+$sql = file_get_contents(__DIR__ . '/db.sql');
+if ($sql === false) {
+    throw new Exception('File "db.sql" not found');
+}
+
+$pdo->exec($sql);
