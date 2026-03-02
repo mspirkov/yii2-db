@@ -13,7 +13,7 @@ abstract class AbstractTestCase extends TestCase
     {
         parent::setUp();
 
-        /** @var array<string, mixed> */
+        /** @var array<string, mixed> $config */
         $config = require __DIR__ . '/config.php';
 
         new Application($config);
