@@ -25,7 +25,7 @@ class TransactionManagerTest extends AbstractTestCase
     {
         $customerName = 'Test1';
 
-        /** @var bool */
+        /** @var bool $transactionResult */
         $transactionResult = $this->transactionManager->wrap(function () use ($customerName): bool {
             $this->executeCommand(
                 "INSERT INTO `customers` (email, name) VALUES ('testwrap1@gmail.com', '{$customerName}')"
@@ -74,7 +74,7 @@ class TransactionManagerTest extends AbstractTestCase
     {
         $customerName = 'Test2';
 
-        /** @var bool */
+        /** @var bool $transactionResult */
         $transactionResult = $this->transactionManager->safeWrap(function () use ($customerName): bool {
             $this->executeCommand(
                 "INSERT INTO `customers` (email, name) VALUES ('testsafewrap1@gmail.com', '{$customerName}')"
@@ -96,7 +96,7 @@ class TransactionManagerTest extends AbstractTestCase
 
         $exception = new Exception('Test transactions 2');
 
-        /** @var bool */
+        /** @var bool $transactionResult */
         $transactionResult = $this->transactionManager->safeWrap(function () use ($customerName, $exception): void {
             $this->executeCommand(
                 "INSERT INTO `customers` (email, name) VALUES ('testsafewrap3@gmail.com', '{$customerName}')"
@@ -130,7 +130,7 @@ class TransactionManagerTest extends AbstractTestCase
             Yii::warning($e);
         };
 
-        /** @var bool */
+        /** @var bool $transactionResult */
         $transactionResult = $this->transactionManager->safeWrap(
             function () use ($customerName): bool {
                 $this->executeCommand(
@@ -156,7 +156,7 @@ class TransactionManagerTest extends AbstractTestCase
 
         $exception = new Exception('Test transactions 3');
 
-        /** @var bool */
+        /** @var bool $transactionResult */
         $transactionResult = $this->transactionManager->safeWrap(
             function () use ($customerName, $exception): void {
                 $this->executeCommand(
