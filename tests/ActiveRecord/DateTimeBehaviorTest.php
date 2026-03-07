@@ -11,7 +11,6 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\Message;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\MessageWithCustomTimeZone;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\Visit;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\VisitWithCustomValue;
-use Yii;
 
 class DateTimeBehaviorTest extends AbstractTestCase
 {
@@ -19,7 +18,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
     public function testCreateAndUpdateByDefault(): void
     {
-        $dateTimeZone = new DateTimeZone(Yii::$app->timeZone);
+        $dateTimeZone = new DateTimeZone($this->application->timeZone);
 
         $timeBeforeCreating = time();
 
@@ -101,7 +100,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
     public function testCreateWithCustomAttributes(): void
     {
-        $dateTimeZone = new DateTimeZone(Yii::$app->timeZone);
+        $dateTimeZone = new DateTimeZone($this->application->timeZone);
 
         $timeBeforeCreating = time();
 

@@ -9,6 +9,8 @@ use yii\console\Application;
 
 abstract class AbstractTestCase extends TestCase
 {
+    protected Application $application;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -16,7 +18,7 @@ abstract class AbstractTestCase extends TestCase
         /** @var array<string, mixed> $config */
         $config = require __DIR__ . '/config.php';
 
-        new Application($config);
+        $this->application = new Application($config);
     }
 
     protected function tearDown(): void

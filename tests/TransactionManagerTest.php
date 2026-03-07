@@ -18,7 +18,7 @@ class TransactionManagerTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->transactionManager = new TransactionManager(Yii::$app->db);
+        $this->transactionManager = new TransactionManager($this->application->db);
     }
 
     public function testWrap(): void
@@ -39,7 +39,7 @@ class TransactionManagerTest extends AbstractTestCase
 
         self::assertTrue($transactionResult);
 
-        $rowsCount = (int) Yii::$app->db->createCommand(
+        $rowsCount = (int) $this->application->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
@@ -63,7 +63,7 @@ class TransactionManagerTest extends AbstractTestCase
 
         self::assertSame($exception, $transactionException);
 
-        $rowsCount = (int) Yii::$app->db->createCommand(
+        $rowsCount = (int) $this->application->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
@@ -88,7 +88,7 @@ class TransactionManagerTest extends AbstractTestCase
 
         self::assertTrue($transactionResult);
 
-        $rowsCount = (int) Yii::$app->db->createCommand(
+        $rowsCount = (int) $this->application->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
@@ -115,7 +115,7 @@ class TransactionManagerTest extends AbstractTestCase
         self::assertSame($exception, $loggedMessage[0]);
         self::assertSame(Logger::LEVEL_ERROR, $loggedMessage[1]);
 
-        $rowsCount = (int) Yii::$app->db->createCommand(
+        $rowsCount = (int) $this->application->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
@@ -148,7 +148,7 @@ class TransactionManagerTest extends AbstractTestCase
 
         self::assertTrue($transactionResult);
 
-        $rowsCount = (int) Yii::$app->db->createCommand(
+        $rowsCount = (int) $this->application->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
@@ -179,7 +179,7 @@ class TransactionManagerTest extends AbstractTestCase
         self::assertSame($exception, $loggedMessage[0]);
         self::assertSame(Logger::LEVEL_WARNING, $loggedMessage[1]);
 
-        $rowsCount = (int) Yii::$app->db->createCommand(
+        $rowsCount = (int) $this->application->db->createCommand(
             "SELECT COUNT(*) FROM `customers` WHERE name = '{$customerName}'"
         )->queryScalar();
 
@@ -188,7 +188,7 @@ class TransactionManagerTest extends AbstractTestCase
 
     private function executeCommand(string $sql): void
     {
-        Yii::$app->db->createCommand($sql)->execute();
+        $this->application->db->createCommand($sql)->execute();
     }
 
     /**
@@ -199,7 +199,7 @@ class TransactionManagerTest extends AbstractTestCase
         $result = null;
 
         /** @var array<int, mixed> $logMessage */
-        foreach (Yii::$app->log->logger->messages as $logMessage) {
+        foreach ($this->application->log->logger->messages as $logMessage) {
             $messageException = $logMessage[0];
             if ($messageException instanceof Exception && $messageException->getMessage() === $message) {
                 $result = $logMessage;
