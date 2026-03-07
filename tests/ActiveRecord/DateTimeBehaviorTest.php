@@ -19,7 +19,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
     public function testCreateAndUpdateByDefault(): void
     {
-        $dateTimeZone = new DateTimeZone(Yii::$app->timeZone);
+        $dateTimeZone = new DateTimeZone($this->application->timeZone);
 
         $timeBeforeCreating = time();
 
@@ -101,7 +101,7 @@ class DateTimeBehaviorTest extends AbstractTestCase
 
     public function testCreateWithCustomAttributes(): void
     {
-        $dateTimeZone = new DateTimeZone(Yii::$app->timeZone);
+        $dateTimeZone = new DateTimeZone($this->application->timeZone);
 
         $timeBeforeCreating = time();
 
