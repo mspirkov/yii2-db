@@ -60,7 +60,7 @@ It also has several additional methods:
 
 This way, you can separate the logic of executing queries from the ActiveRecord models themselves. This will make your ActiveRecord models thinner and simpler. It will also make testing easier, as you can mock the methods for working with the database.
 
-#### Usage example:
+#### Usage example
 
 ```php
 use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
@@ -172,19 +172,31 @@ It provides two main methods:
 - `safeWrap` - executes a callable within a transaction, safely handling exceptions and logging them.
 - `wrap` - executes a callable within a transaction.
 
-#### Usage example:
+#### Usage example
+
+##### Initialization
+
+Add the definition to the `container` configuration in the `definitions` section:
 
 ```php
-class TransactionManager extends \MSpirkov\Yii2\Db\TransactionManager
-{
-    public function __construct()
-    {
-        parent::__construct(Yii::$app->db);
-    }
-}
+use MSpirkov\Yii2\Db\TransactionManager;
+
+return [
+    ...
+    'container' => [
+        'definitions' => [
+            TransactionManager::class => static fn() => new TransactionManager(Yii::$app->db),
+        ],
+    ],
+    ...
+];
 ```
 
+##### Usage
+
 ```php
+use MSpirkov\Yii2\Db\TransactionManager;
+
 class ProductService
 {
     public function __construct(
