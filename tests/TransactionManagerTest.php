@@ -126,7 +126,7 @@ class TransactionManagerTest extends AbstractTestCase
     {
         $customerName = 'Test3';
 
-        $logFunction = function (Throwable $e): void {
+        $logFunction = static function (Throwable $e): void {
             Yii::warning($e);
         };
 
