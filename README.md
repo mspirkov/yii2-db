@@ -95,7 +95,7 @@ class CustomerService
 
 Behavior for ActiveRecord models that automatically fills the specified attributes with the current date and time.
 
-Usage example:
+#### Usage example
 
 ```php
 use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
