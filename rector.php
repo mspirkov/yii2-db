@@ -7,7 +7,6 @@ use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\Config\RectorConfig;
 use Rector\Instanceof_\Rector\Ternary\FlipNegatedTernaryInstanceofRector;
 use Rector\Set\ValueObject\SetList;
-use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -15,7 +14,6 @@ return RectorConfig::configure()
         __DIR__ . '/tests',
     ])
     ->withImportNames()
-    ->withPhpVersion(PhpVersion::PHP_74)
     ->withPhp74Sets()
     ->withSets([
         SetList::CODE_QUALITY,
