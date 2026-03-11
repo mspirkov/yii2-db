@@ -7,6 +7,9 @@ namespace MSpirkov\Yii2\Db;
 use Throwable;
 use yii\db\Transaction;
 
+/**
+ * @author Maksim Spirkov <spirkov.2001@mail.ru>
+ */
 interface TransactionManagerInterface
 {
     /**
