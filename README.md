@@ -179,13 +179,13 @@ It provides two main methods:
 Add the definition to the `container` configuration in the `definitions` section:
 
 ```php
-use MSpirkov\Yii2\Db\TransactionManager;
+use MSpirkov\Yii2\Db\TransactionManagerInterface;
 
 return [
     ...
     'container' => [
         'definitions' => [
-            TransactionManager::class => static fn() => new TransactionManager(Yii::$app->db),
+            TransactionManagerInterface::class => static fn() => new TransactionManager(Yii::$app->db),
         ],
     ],
     ...
@@ -195,12 +195,12 @@ return [
 ##### Usage
 
 ```php
-use MSpirkov\Yii2\Db\TransactionManager;
+use MSpirkov\Yii2\Db\TransactionManagerInterface;
 
 class ProductService
 {
     public function __construct(
-        private readonly TransactionManager $transactionManager,
+        private readonly TransactionManagerInterface $transactionManager,
         private readonly ProductFilesystem $productFilesystem,
         private readonly ProductRepository $productRepository,
     ) {}
