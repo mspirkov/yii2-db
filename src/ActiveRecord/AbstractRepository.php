@@ -30,20 +30,6 @@ use yii\db\TableSchema;
  *   current ActiveRecord class.
  * - {@see RepositoryInterface::find()} - creates and returns a new ActiveQuery instance for the current ActiveRecord model.
  *
- * Usage example:
- *
- * ```
- * use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
- *
- * class CustomerRepository extends AbstractRepository
- * {
- *     public function __construct()
- *     {
- *         parent::__construct(Customer::class);
- *     }
- * }
- * ```
- *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
  * @template T of ActiveRecord

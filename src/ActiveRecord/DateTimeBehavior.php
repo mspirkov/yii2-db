@@ -14,19 +14,6 @@ use Yii;
 /**
  * Behavior for ActiveRecord models that automatically fills the specified attributes with the current date and time.
  *
- * Usage example:
- *
- * ```
- * use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
- *
- * public function behaviors(): array
- * {
- *     return [
- *         DateTimeBehavior::class,
- *     ];
- * }
- * ```
- *
  * By default, this behavior will fill the `created_at` attribute with the date and time when the associated
  * AR object is being inserted; it will fill the `updated_at` attribute with the date and time when the AR object
  * is being updated. The date and time are determined relative to {@see DateTimeBehavior::$timeZone}.
@@ -34,23 +21,6 @@ use Yii;
  * If your attribute names are different or you want to use a different way of calculating the timestamp,
  * you may configure the {@see DateTimeBehavior::$createdAtAttribute}, {@see DateTimeBehavior::$updatedAtAttribute}
  * and {@see DateTimeBehavior::$value} properties like the following:
- *
- * ```
- * use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
- * use yii\db\Expression;
- *
- * public function behaviors(): array
- * {
- *     return [
- *         [
- *             'class' => DateTimeBehavior::class,
- *             'createdAtAttribute' => 'create_time',
- *             'updatedAtAttribute' => 'update_time',
- *             'value' => new Expression('NOW()'),
- *         ],
- *     ];
- * }
- * ```
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
