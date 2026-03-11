@@ -68,11 +68,11 @@ Create an interface based on `RepositoryInterface`:
 use MSpirkov\Yii2\Db\ActiveRecord\RepositoryInterface;
 
 /**
- * @extends RepositoryInterface<Customer>
+ * @extends RepositoryInterface<Product>
  */
-interface CustomerRepositoryInterface extends RepositoryInterface
+interface ProductRepositoryInterface extends RepositoryInterface
 {
-    public function findCustomer(): ?Customer;
+    public function findProduct(): ?Product;
 }
 ```
 
@@ -82,30 +82,30 @@ Next, create your repository:
 use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
 
 /**
- * @extends AbstractRepository<Customer>
+ * @extends AbstractRepository<Product>
  */
-final class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
+final class ProductRepository extends AbstractRepository implements ProductRepositoryInterface
 {
     public function __construct()
     {
-        parent::__construct(Customer::class);
+        parent::__construct(Product::class);
     }
 
-    public function findCustomer(): ?Customer
+    public function findProduct(): ?Product
     {
         ...
     }
 }
 ```
 
-After that, specify the implementation of the `CustomerRepositoryInterface` interface in the container in the `definitions` section:
+After that, specify the implementation of the `ProductRepositoryInterface` interface in the container in the `definitions` section:
 
 ```php
 return [
     ...
     'container' => [
         'definitions' => [
-            CustomerRepositoryInterface::class => CustomerRepository::class,
+            ProductRepositoryInterface::class => ProductRepository::class,
         ],
     ],
     ...
@@ -115,13 +115,13 @@ return [
 After that, you can use the repository as follows:
 
 ```php
-final readonly class CustomerService
+final readonly class ProductService
 {
     public function __construct(
-        private CustomerRepositoryInterface $customerRepository,
+        private ProductRepositoryInterface $customerRepository,
     ) {}
 
-    public function getCustomer(int $id): ?Customer
+    public function getProduct(int $id): ?Product
     {
         return $this->customerRepository->findOne($id);
     }
