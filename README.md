@@ -62,29 +62,66 @@ This way, you can separate the logic of executing queries from the ActiveRecord 
 
 #### Usage example
 
+Create an interface based on `RepositoryInterface`:
+
+```php
+use MSpirkov\Yii2\Db\ActiveRecord\RepositoryInterface;
+
+/**
+ * @extends RepositoryInterface<Product>
+ */
+interface ProductRepositoryInterface extends RepositoryInterface
+{
+    public function findProduct(): ?Product;
+}
+```
+
+Next, create your repository:
+
 ```php
 use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
 
 /**
- * @extends AbstractRepository<Customer>
+ * @extends AbstractRepository<Product>
  */
-class CustomerRepository extends AbstractRepository
+final class ProductRepository extends AbstractRepository implements ProductRepositoryInterface
 {
     public function __construct()
     {
-        parent::__construct(Customer::class);
+        parent::__construct(Product::class);
+    }
+
+    public function findProduct(): ?Product
+    {
+        ...
     }
 }
 ```
 
+After that, specify the implementation of the `ProductRepositoryInterface` interface in the container in the `definitions` section:
+
 ```php
-class CustomerService
+return [
+    ...
+    'container' => [
+        'definitions' => [
+            ProductRepositoryInterface::class => ProductRepository::class,
+        ],
+    ],
+    ...
+];
+```
+
+After that, you can use the repository as follows:
+
+```php
+final readonly class ProductService
 {
     public function __construct(
-        private readonly CustomerRepository $customerRepository,
+        private ProductRepositoryInterface $customerRepository,
     ) {}
 
-    public function getCustomer(int $id): ?Customer
+    public function getProduct(int $id): ?Product
     {
         return $this->customerRepository->findOne($id);
     }
@@ -106,7 +143,7 @@ use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
  * @property string $created_at
  * @property string|null $updated_at
  */
-class Message extends ActiveRecord
+final class Message extends ActiveRecord
 {
     public static function tableName(): string
     {
@@ -139,7 +176,7 @@ use yii\db\Expression;
  * @property string $create_time
  * @property string|null $update_time
  */
-class Message extends ActiveRecord
+final class Message extends ActiveRecord
 {
     public static function tableName(): string
     {
@@ -197,12 +234,12 @@ return [
 ```php
 use MSpirkov\Yii2\Db\TransactionManagerInterface;
 
-class ProductService
+final readonly class ProductService
 {
     public function __construct(
-        private readonly TransactionManagerInterface $transactionManager,
-        private readonly ProductFilesystem $productFilesystem,
-        private readonly ProductRepository $productRepository,
+        private TransactionManagerInterface $transactionManager,
+        private FilesystemInterface $filesystem,
+        private ProductRepositoryInterface $productRepository,
     ) {}
 
     /**
@@ -216,7 +253,7 @@ class ProductService
 
         $transactionResult = $this->transactionManager->safeWrap(function () use ($product) {
             $this->productRepository->delete($product);
-            $this->productFilesystem->delete($product->preview_filename);
+            $this->filesystem->delete($product->file_path);
 
             return [
                 'success' => true,
