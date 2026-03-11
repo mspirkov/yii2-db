@@ -10,7 +10,7 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\Customer;
 /**
  * @extends AbstractRepository<Customer>
  */
-class CustomerRepository extends AbstractRepository
+final class CustomerRepository extends AbstractRepository
 {
     public function __construct()
     {

@@ -13,7 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property-read Order[] $orders
  */
-class Customer extends ActiveRecord
+final class Customer extends ActiveRecord
 {
     public static function tableName(): string
     {

@@ -13,7 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $created_at
  * @property string|null $updated_at
  */
-class Message extends ActiveRecord
+final class Message extends ActiveRecord
 {
     public static function tableName(): string
     {

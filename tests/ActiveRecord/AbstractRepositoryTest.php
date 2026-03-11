@@ -16,7 +16,7 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Repositories\OrderRepository;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Repositories\PaymentSystemRepository;
 use yii\db\Exception as DbException;
 
-class AbstractRepositoryTest extends AbstractTestCase
+final class AbstractRepositoryTest extends AbstractTestCase
 {
     private const NON_EXISTENT_CUSTOMER_EMAIL = 'nonexistent@gmail.com';
 

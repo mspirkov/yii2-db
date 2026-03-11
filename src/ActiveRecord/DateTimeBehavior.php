@@ -58,7 +58,7 @@ use Yii;
  *
  * @extends AttributeBehavior<T>
  */
-class DateTimeBehavior extends AttributeBehavior
+final class DateTimeBehavior extends AttributeBehavior
 {
     private const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
 

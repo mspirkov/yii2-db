@@ -12,7 +12,7 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\MessageWithCusto
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\Visit;
 use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\DateTimeBehavior\VisitWithCustomValue;
 
-class DateTimeBehaviorTest extends AbstractTestCase
+final class DateTimeBehaviorTest extends AbstractTestCase
 {
     private const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
 

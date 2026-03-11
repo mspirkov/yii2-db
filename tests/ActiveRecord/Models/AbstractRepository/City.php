@@ -13,7 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property-read Country $country
  */
-class City extends ActiveRecord
+final class City extends ActiveRecord
 {
     public static function tableName(): string
     {

@@ -10,7 +10,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $name
  */
-class Country extends ActiveRecord
+final class Country extends ActiveRecord
 {
     public static function tableName(): string
     {
