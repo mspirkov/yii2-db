@@ -62,26 +62,63 @@ This way, you can separate the logic of executing queries from the ActiveRecord 
 
 #### Usage example
 
+Create an interface based on `RepositoryInterface`:
+
+```php
+use MSpirkov\Yii2\Db\ActiveRecord\RepositoryInterface;
+
+/**
+ * @extends RepositoryInterface<Customer>
+ */
+interface CustomerRepositoryInterface extends RepositoryInterface
+{
+    public function findCustomer(): ?Customer;
+}
+```
+
+Next, create your repository:
+
 ```php
 use MSpirkov\Yii2\Db\ActiveRecord\AbstractRepository;
 
 /**
  * @extends AbstractRepository<Customer>
  */
-class CustomerRepository extends AbstractRepository
+final class CustomerRepository extends AbstractRepository implements CustomerRepositoryInterface
 {
     public function __construct()
     {
         parent::__construct(Customer::class);
     }
+
+    public function findCustomer(): ?Customer
+    {
+        ...
+    }
 }
 ```
 
+After that, specify the implementation of the `CustomerRepositoryInterface` interface in the container in the `definitions` section:
+
 ```php
-class CustomerService
+return [
+    ...
+    'container' => [
+        'definitions' => [
+            CustomerRepositoryInterface::class => CustomerRepository::class,
+        ],
+    ],
+    ...
+];
+```
+
+After that, you can use the repository as follows:
+
+```php
+final readonly class CustomerService
 {
     public function __construct(
-        private readonly CustomerRepository $customerRepository,
+        private CustomerRepositoryInterface $customerRepository,
     ) {}
 
     public function getCustomer(int $id): ?Customer
@@ -106,7 +143,7 @@ use MSpirkov\Yii2\Db\ActiveRecord\DateTimeBehavior;
  * @property string $created_at
  * @property string|null $updated_at
  */
-class Message extends ActiveRecord
+final class Message extends ActiveRecord
 {
     public static function tableName(): string
     {
@@ -139,7 +176,7 @@ use yii\db\Expression;
  * @property string $create_time
  * @property string|null $update_time
  */
-class Message extends ActiveRecord
+final class Message extends ActiveRecord
 {
     public static function tableName(): string
     {
@@ -197,12 +234,12 @@ return [
 ```php
 use MSpirkov\Yii2\Db\TransactionManagerInterface;
 
-class ProductService
+final readonly class ProductService
 {
     public function __construct(
-        private readonly TransactionManagerInterface $transactionManager,
-        private readonly ProductFilesystem $productFilesystem,
-        private readonly ProductRepository $productRepository,
+        private TransactionManagerInterface $transactionManager,
+        private FilesystemInterface $filesystem,
+        private ProductRepositoryInterface $productRepository,
     ) {}
 
     /**
@@ -216,7 +253,7 @@ class ProductService
 
         $transactionResult = $this->transactionManager->safeWrap(function () use ($product) {
             $this->productRepository->delete($product);
-            $this->productFilesystem->delete($product->preview_filename);
+            $this->filesystem->delete($product->file_path);
 
             return [
                 'success' => true,
