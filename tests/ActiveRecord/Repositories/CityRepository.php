@@ -10,7 +10,7 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\City;
 /**
  * @extends AbstractRepository<City>
  */
-class CityRepository extends AbstractRepository
+final class CityRepository extends AbstractRepository
 {
     public function __construct()
     {

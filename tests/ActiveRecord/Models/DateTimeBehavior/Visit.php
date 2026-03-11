@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property string $username
  * @property string $created_at
  */
-class Visit extends ActiveRecord
+final class Visit extends ActiveRecord
 {
     public static function tableName(): string
     {

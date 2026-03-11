@@ -10,7 +10,7 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\PaymentSystem;
 /**
  * @extends AbstractRepository<PaymentSystem>
  */
-class PaymentSystemRepository extends AbstractRepository
+final class PaymentSystemRepository extends AbstractRepository
 {
     public function __construct()
     {

@@ -10,7 +10,7 @@ use Yii;
 use MSpirkov\Yii2\Db\TransactionManager;
 use yii\log\Logger;
 
-class TransactionManagerTest extends AbstractTestCase
+final class TransactionManagerTest extends AbstractTestCase
 {
     private TransactionManager $transactionManager;
 

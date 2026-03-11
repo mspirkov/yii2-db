@@ -10,7 +10,7 @@ use MSpirkov\Yii2\Db\Tests\ActiveRecord\Models\AbstractRepository\Order;
 /**
  * @extends AbstractRepository<Order>
  */
-class OrderRepository extends AbstractRepository
+final class OrderRepository extends AbstractRepository
 {
     public function __construct()
     {

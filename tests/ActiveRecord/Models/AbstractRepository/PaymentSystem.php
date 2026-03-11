@@ -10,7 +10,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $name
  */
-class PaymentSystem extends ActiveRecord
+final class PaymentSystem extends ActiveRecord
 {
     public static function tableName(): string
     {
