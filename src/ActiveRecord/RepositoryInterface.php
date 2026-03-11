@@ -15,6 +15,8 @@ use yii\db\Query;
 use yii\db\TableSchema;
 
 /**
+ * @author Maksim Spirkov <spirkov.2001@mail.ru>
+ *
  * @template T of ActiveRecord
  */
 interface RepositoryInterface
