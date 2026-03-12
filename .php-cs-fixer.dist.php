@@ -39,7 +39,6 @@ return (new Config())
             'format' => 'short',
         ],
         'explicit_string_variable' => true,
-        'final_class' => true,
         'fully_qualified_strict_types' => [
             'import_symbols' => true
         ],
