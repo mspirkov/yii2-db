@@ -72,7 +72,10 @@ use MSpirkov\Yii2\Db\ActiveRecord\RepositoryInterface;
  */
 interface ProductRepositoryInterface extends RepositoryInterface
 {
-    public function findProduct(): ?Product;
+    /**
+     * @return Product[]
+     */
+    public function findForMainPage(int $limit): array
 }
 ```
 
@@ -91,9 +94,13 @@ final class ProductRepository extends AbstractRepository implements ProductRepos
         parent::__construct(Product::class);
     }
 
-    public function findProduct(): ?Product
+    public function findForMainPage(int $limit): array
     {
-        ...
+        return $this->find()
+            ->where(['hidden' => 0])
+            ->orderBy(['id' => SORT_DESC])
+            ->limit($limit)
+            ->all();
     }
 }
 ```
@@ -115,15 +122,26 @@ return [
 After that, you can use the repository as follows:
 
 ```php
-final readonly class ProductService
+final readonly class MainService
 {
+    private const int PRODUCTS_LIMIT = 20;
+
     public function __construct(
-        private ProductRepositoryInterface $customerRepository,
+        private ProductRepositoryInterface $productRepository,
     ) {}
 
-    public function getProduct(int $id): ?Product
+    /**
+     * @return array{
+     *     products: Product[],
+     * }
+     */
+    public function getMainPageData(int $id): array
     {
-        return $this->customerRepository->findOne($id);
+        $products = $this->productRepository->findForMainPage(self::PRODUCTS_LIMIT);
+
+        return [
+            'products' => $products,
+        ];
     }
 }
 ```
