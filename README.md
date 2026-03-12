@@ -135,7 +135,7 @@ final readonly class MainService
      *     products: Product[],
      * }
      */
-    public function getMainPageData(int $id): array
+    public function getMainData(int $id): array
     {
         $products = $this->productRepository->findForMainPage(self::PRODUCTS_LIMIT);
 
