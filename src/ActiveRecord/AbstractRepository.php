@@ -28,7 +28,7 @@ use yii\db\TableSchema;
  *   eager loads the specified relations.
  * - {@see RepositoryInterface::getTableSchema()} - returns the schema information of the DB table associated with
  *   current ActiveRecord class.
- * - {@see RepositoryInterface::find()} - creates and returns a new ActiveQuery instance for the current ActiveRecord model.
+ * - {@see AbstractRepository::find()} - creates and returns a new ActiveQuery instance for the current ActiveRecord model.
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
