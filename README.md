@@ -235,6 +235,7 @@ Add the definition to the `container` configuration in the `definitions` section
 
 ```php
 use MSpirkov\Yii2\Db\TransactionManagerInterface;
+use MSpirkov\Yii2\Db\TransactionManager;
 
 return [
     ...
