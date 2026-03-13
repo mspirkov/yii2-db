@@ -2,6 +2,7 @@ name: yii2-db-tests
 services:
   app:
     container_name: yii2-db-tests-app
+    user: "${UID:-1000}:${GID:-1000}"
     build: .
     volumes:
       - ../:/app
