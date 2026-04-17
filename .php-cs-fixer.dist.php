@@ -92,7 +92,9 @@ return (new Config())
             'only_booleans' => true,
             'position' => 'end',
         ],
-        'return_assignment' => true,
+        'return_assignment' => [
+            'skip_named_var_tags' => true,
+        ],
         'semicolon_after_instruction' => true,
         'space_after_semicolon' => true,
         'self_static_accessor' => true,
