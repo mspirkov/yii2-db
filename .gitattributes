@@ -8,5 +8,5 @@
 /phpstan.dist.neon              export-ignore
 /phpunit.xml.dist               export-ignore
 /rector.php                     export-ignore
-/phpstan                        export-ignore
+/tools                          export-ignore
 /tests                          export-ignore
