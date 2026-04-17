@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
+use PhpCsFixerCustomFixers\Fixer\CommentSurroundedBySpacesFixer;
+use PhpCsFixerCustomFixers\Fixer\MultilineCommentOpeningClosingAloneFixer;
+use PhpCsFixerCustomFixers\Fixer\NoPhpStormGeneratedCommentFixer;
+use PhpCsFixerCustomFixers\Fixer\PhpdocTypesCommaSpacesFixer;
+use PhpCsFixerCustomFixers\Fixer\PhpdocTypesTrimFixer;
+use PhpCsFixerCustomFixers\Fixers;
 
 $finder = (new Finder())->in(__DIR__);
 
 return (new Config())
+    ->registerCustomFixers(new Fixers())
     ->setRules([
         '@PHP7x4Migration' => true,
         '@PER-CS3x0' => true,
@@ -140,6 +147,11 @@ return (new Config())
         'whitespace_after_comma_in_array' => [
             'ensure_single_space' => true,
         ],
+        CommentSurroundedBySpacesFixer::name() => true,
+        MultilineCommentOpeningClosingAloneFixer::name() => true,
+        NoPhpStormGeneratedCommentFixer::name() => true,
+        PhpdocTypesCommaSpacesFixer::name() => true,
+        PhpdocTypesTrimFixer::name() => true,
     ])
     ->setFinder($finder)
     ->setRiskyAllowed(true);
