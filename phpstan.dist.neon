@@ -31,7 +31,7 @@ parameters:
             enabled: true
 
     bootstrapFiles:
-        - phpstan/bootstrap.php
+        - tools/phpstan/bootstrap.php
 
     dynamicConstantNames:
         - YII_DEBUG
