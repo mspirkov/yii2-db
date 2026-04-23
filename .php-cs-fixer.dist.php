@@ -15,6 +15,8 @@ $finder = (new Finder())->in(__DIR__);
 
 return (new Config())
     ->registerCustomFixers(new Fixers())
+    ->setRiskyAllowed(true)
+    ->setFinder($finder)
     ->setRules([
         '@PHP7x4Migration' => true,
         '@PER-CS3x0' => true,
@@ -145,6 +147,4 @@ return (new Config())
         NoPhpStormGeneratedCommentFixer::name() => true,
         PhpdocTypesCommaSpacesFixer::name() => true,
         PhpdocTypesTrimFixer::name() => true,
-    ])
-    ->setFinder($finder)
-    ->setRiskyAllowed(true);
+    ]);
