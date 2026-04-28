@@ -20,7 +20,7 @@
     "scripts": {
         "lint:check": "./vendor/bin/php-cs-fixer check",
         "lint:fix": "./vendor/bin/php-cs-fixer fix",
-        "phpstan:analyse": "./vendor/bin/phpstan analyse",
+        "phpstan": "./vendor/bin/phpstan",
         "rector:check": "./vendor/bin/rector process --dry-run",
         "rector:fix": "./vendor/bin/rector process"
     },
