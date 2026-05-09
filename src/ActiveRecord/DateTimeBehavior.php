@@ -71,6 +71,7 @@ final class DateTimeBehavior extends AttributeBehavior
     protected function getValue($event)
     {
         if ($this->value === null) {
+            // @phpstan-ignore property.nonObject (We assume that the application is always present in this location, as database queries will not work if the application is not running.)
             $timeZone = $this->timeZone ?? Yii::$app->timeZone;
             $date = new DateTimeImmutable('now', new DateTimeZone($timeZone));
 
