@@ -17,6 +17,7 @@ parameters:
     checkBenevolentUnionTypes: true
     checkMissingCallableSignature: true
     checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    reportIgnoresWithoutComments: true
     reportPossiblyNonexistentConstantArrayOffset: true
     reportMaybesInPropertyPhpDocTypes: false
 
