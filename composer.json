@@ -8,8 +8,6 @@
         "active record"
     ],
     "type": "library",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "license": "MIT",
     "authors": [
         {
