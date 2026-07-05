@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
-use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\Config\RectorConfig;
 use Rector\Instanceof_\Rector\Ternary\FlipNegatedTernaryInstanceofRector;
 use Rector\Set\ValueObject\SetList;
@@ -26,6 +24,4 @@ return RectorConfig::configure()
     ])
     ->withRules([
         FlipNegatedTernaryInstanceofRector::class,
-        StaticClosureRector::class,
-        StaticArrowFunctionRector::class,
     ]);
