@@ -1,4 +1,5 @@
 includes:
+    - vendor/mspirkov/yii2-phpstan-rules/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/shipmonk/phpstan-rules/rules.neon
