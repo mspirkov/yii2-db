@@ -27,6 +27,10 @@ parameters:
             superclassToSuffixMapping!:
                 \MSpirkov\Yii2\Db\Tests\AbstractTestCase: Test
 
+    mspirkovYii2Rules:
+        noForbiddenYiiAppProperties:
+            enabled: false
+
     ergebnis:
         allRules: false
         final:
