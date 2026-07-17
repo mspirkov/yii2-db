@@ -290,3 +290,7 @@ final readonly class ProductService
     }
 }
 ```
+
+## Support
+
+If this project is useful to you, consider giving it a ⭐ on [GitHub](https://github.com/mspirkov/yii2-db) — it helps others discover it.
