@@ -15,7 +15,7 @@ A package of helper classes for working with databases in Yii2.
 
 ## Support
 
-If you like this project, give it a ⭐ on [GitHub](https://github.com/mspirkov/yii2-phpstan-rules) — it helps others
+If you like this project, give it a ⭐ on [GitHub](https://github.com/mspirkov/yii2-db) — it helps others
 discover it.
 
 ## Installation
