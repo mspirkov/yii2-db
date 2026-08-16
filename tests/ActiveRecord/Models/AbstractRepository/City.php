@@ -20,9 +20,6 @@ final class City extends ActiveRecord
         return '{{cities}}';
     }
 
-    /**
-     * @return ActiveQuery<Country>
-     */
     public function getCountry(): ActiveQuery
     {
         return $this->hasOne(Country::class, ['id' => 'country_id']);

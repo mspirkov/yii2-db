@@ -30,9 +30,6 @@ final class Customer extends ActiveRecord
         ];
     }
 
-    /**
-     * @return ActiveQuery<Order>
-     */
     public function getOrders(): ActiveQuery
     {
         return $this->hasMany(Order::class, ['customer_id' => 'id']);
