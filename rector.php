@@ -8,6 +8,8 @@ use Rector\CodeQuality\Rector\Empty_\SimplifyEmptyCheckOnEmptyArrayRector;
 use Rector\CodeQuality\Rector\FuncCall\SortCallLikeNamedArgsRector;
 use Rector\CodeQuality\Rector\FunctionLike\SimplifyUselessVariableRector;
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
+use Rector\CodeQuality\Rector\If_\ArrayExplicitBoolCompareRector;
+use Rector\CodeQuality\Rector\If_\ObjectExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\If_\SimplifyIfReturnBoolRector;
 use Rector\CodeQuality\Rector\Isset_\IssetOnPropertyObjectToPropertyExistsRector;
 use Rector\Config\RectorConfig;
@@ -44,6 +46,8 @@ return RectorConfig::configure()
         SimplifyEmptyCheckOnEmptyArrayRector::class,
         SortCallLikeNamedArgsRector::class,
         SimplifyIfReturnBoolRector::class,
+        ArrayExplicitBoolCompareRector::class,
+        ObjectExplicitBoolCompareRector::class,
         // Dead Code
         SimplifyUselessVariableRector::class,
         RemoveNullPropertyInitializationRector::class,
