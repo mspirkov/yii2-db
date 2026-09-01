@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use MSpirkov\Yii2\Rector\Yii2SetList;
 use Rector\CodeQuality\Rector\BooleanAnd\SimplifyEmptyArrayCheckRector;
 use Rector\CodeQuality\Rector\Empty_\SimplifyEmptyCheckOnEmptyArrayRector;
 use Rector\CodeQuality\Rector\FuncCall\SortCallLikeNamedArgsRector;
@@ -12,7 +13,6 @@ use Rector\CodeQuality\Rector\Isset_\IssetOnPropertyObjectToPropertyExistsRector
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\PropertyProperty\RemoveNullPropertyInitializationRector;
-use Rector\Instanceof_\Rector\Ternary\FlipNegatedTernaryInstanceofRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\Empty_\EmptyOnNullableObjectToInstanceOfRector;
@@ -29,12 +29,10 @@ return RectorConfig::configure()
         SetList::DEAD_CODE,
         SetList::PRIVATIZATION,
         SetList::TYPE_DECLARATION,
+        Yii2SetList::MAIN,
     ])
     ->withPHPStanConfigs([
         __DIR__ . '/phpstan.dist.neon',
-    ])
-    ->withRules([
-        FlipNegatedTernaryInstanceofRector::class,
     ])
     ->withSkip([
         // PHP 7.4
