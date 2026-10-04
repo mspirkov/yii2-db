@@ -31,7 +31,9 @@ return RectorConfig::configure()
         SetList::DEAD_CODE,
         SetList::PRIVATIZATION,
         SetList::TYPE_DECLARATION,
-        Yii2SetList::MAIN,
+        Yii2SetList::CODE_QUALITY,
+        Yii2SetList::DEPRECATION,
+        Yii2SetList::PHPDOC,
     ])
     ->withPHPStanConfigs([
         __DIR__ . '/phpstan.dist.neon',
