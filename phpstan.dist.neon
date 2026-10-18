@@ -1,5 +1,5 @@
 includes:
-    - vendor/mspirkov/yii2-phpstan-rules/rules.neon
+    - vendor/mspirkov/yii2-phpstan/extension.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/shipmonk/phpstan-rules/rules.neon
@@ -27,7 +27,12 @@ parameters:
             superclassToSuffixMapping!:
                 \MSpirkov\Yii2\Db\Tests\AbstractTestCase: Test
 
-    mspirkovYii2Rules:
+    mspirkovYii2:
+        yiiAppTypes:
+            -
+                paths:
+                    - %currentWorkingDirectory%/src
+                nullable: false
         noForbiddenYiiAppProperties:
             enabled: false
 
