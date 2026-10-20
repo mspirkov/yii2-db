@@ -31,7 +31,7 @@ parameters:
         yiiAppTypes:
             -
                 paths:
-                    - %currentWorkingDirectory%/src
+                    - src
                 nullable: false
         noForbiddenYiiAppProperties:
             enabled: false
