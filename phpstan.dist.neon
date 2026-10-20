@@ -44,13 +44,6 @@ parameters:
     bootstrapFiles:
         - tools/phpstan/bootstrap.php
 
-    dynamicConstantNames:
-        - YII_DEBUG
-        - YII_ENV
-        - YII_ENV_DEV
-        - YII_ENV_PROD
-        - YII_ENV_TEST
-
     ignoreErrors:
         -
             message: '#^Missing native return typehint int\|false$#'
